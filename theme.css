@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+/* https://www.canva.com/colors/color-palettes/speckled-eggs/ */
+
+:root {
+    --background-color: #111111;
+    --overlay-color: #222222;
+    --font-color: #eeeeee;
+
+    --navy-blue: #003B73;
+    --royal-blue: #0074B7;
+    --blue-grotto: #60A3D9;
+}
+
+
+
+/* Tags */
+
+body {
+    background-color: var(--background-color);
+
+    font-family: 'Nanum Gothic', sans-serif;
+    color: var(--font-color);
+    font-size: 30px;
+}
+
+h1 {
+    font-weight: 800;
+}
+
+input, select {
+    background-color: var(--overlay-color);
+    
+    color: var(--font-color);
+    font-size: 30px;
+
+    border: 2px solid var(--blue-grotto);
+    border-radius: 10px;
+
+    outline: none;
+
+    padding: 10px;
+}
+
+input:hover, input:focus, select:hover, select:focus {
+    border-color: var(--royal-blue);
+}
+
+select {
+    width: 100%;
+}
+
+a {
+    color: var(--font-color);
+    font-size: 24px;
+}
+
+
+
+/* Hilfsklassen */
+
+.center-text {
+    text-align: center;
+}
+
+.center {
+    margin: 0 auto;
+}
+
+.button {
+    border: none;
+    background: linear-gradient(45deg, var(--blue-grotto), var(--royal-blue));
+}
+
+.button:hover {
+    background: linear-gradient(45deg, var(--royal-blue), var(--navy-blue));
+}
+
+/* Gastregistierung */
+
+#guestRegistrationTable {
+    text-align: left;
+    border-spacing: 15px;
+}
+
+#submitButton {
+    margin-top: 50px;
+}
+
+
+
+/* Footer */
+
+#footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+
+    background-color: var(--overlay-color);
+
+    border-top: 2px solid var(--blue-grotto);
+
+    display: inline-flex;
+    justify-content: space-around;
+}
+
+#footer > a {
+    margin: 15px;
+}
+
+
+
+/* Placeholder */
+
+/* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder { 
+    color: var(--navy-blue);
+    opacity: 1; /* Firefox */
+}
+
+/* Internet Explorer 10-11 */
+:-ms-input-placeholder { 
+    color: var(--navy-blue);
+}

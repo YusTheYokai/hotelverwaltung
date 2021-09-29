@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <title>Gastregister</title>
+        <link rel="stylesheet" href="theme.css">
+    </head>
+    <body>
+        <h1>Gastregister</h1>
+        <form class="center-text" method="POST">
+            <table id="guestRegistrationTable" class="center">
+                <tr>
+                    <td>
+                        <label for="email">Email:</label>
+                    </td>
+                    <td>
+                        <input type="email" id="email" name="email" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="honorifics">Anrede:</label>
+                    </td>
+                    <td>
+                        <select name="honorifics" id="honorifics" required>
+                            <option value selected disabled>Ihre Auswahl</option>
+                            <option value="male">Herr</option>
+                            <option value="female">Frau</option>
+                            <option value="other">Divers</option>
+                        </select>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <label for="fname">Vorname:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="fname" name="fname" required maxlength="99"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="lname">Nachname:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="lname" name="lname" required maxlength="99"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="postalCode">Postleitzahl:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="postalCode" id="postalCode" required minlength="3">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="place">Ort:</label>
+                    </td>
+                    <td>
+                        <input type="address" name="place" id="place" required>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td>
+                        <label for="street">Straße:</label>
+                    </td>
+                    <td>
+                        <input type="street" name="street" id="street" required>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td>
+                        <label for="housenumber">Hausnummer:</label> 
+                    </td>
+                    <td>
+                        <input type="text" name="housenumber" id="housenumber" required maxlength="10">
+                    </td>
+                </tr>
+            </table>
+
+            <input id="submitButton" type="submit" value="Submit" class="button" />
+        </form>
+
+        <div id="footer">
+            <a href="help.html">Hilfe</a>
+            <a href="imprint.html">Impressum</a>
+        </div>
+    </body>
+</html>
+
