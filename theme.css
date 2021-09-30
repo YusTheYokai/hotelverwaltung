@@ -21,7 +21,7 @@ body {
 
     font-family: 'Nanum Gothic', sans-serif;
     color: var(--font-color);
-    font-size: 30px;
+    font-size: 15px;
 }
 
 h1 {
@@ -32,7 +32,7 @@ input, select {
     background-color: var(--overlay-color);
     
     color: var(--font-color);
-    font-size: 30px;
+    font-size: 15px;
 
     border: 2px solid var(--blue-grotto);
     border-radius: 10px;
