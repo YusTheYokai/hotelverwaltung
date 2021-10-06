@@ -124,3 +124,4 @@ a {
 :-ms-input-placeholder { 
     color: var(--navy-blue);
 }
+h1 ~ h2 {color: rgb(72, 212, 147); }
