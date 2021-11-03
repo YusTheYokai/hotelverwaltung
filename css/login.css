@@ -1,0 +1,16 @@
+body {
+    /* background: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; */
+    background-color: #222;
+}
+
+#loginContainer {
+    margin-top: 30vh;
+    padding: 20px;
+    background-color: aqua;
+    background: rgb(0,64,181);
+    background: linear-gradient(60deg, rgba(0,64,181,0.25) 0%, rgba(48,222,255,0.25) 50%, rgba(255,158,31,0.25) 100%);
+    /* border: 1px solid rgb(0,64,181); */
+    border-radius: 10px;
+}
