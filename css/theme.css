@@ -1,8 +1,61 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
 
-/* https://www.canva.com/colors/color-palettes/speckled-eggs/ */
+/* navbar */
+.navbar {
+    background-color: black !important;
+}
 
-:root {
+.navbar a {
+    color: white !important;
+}
+
+.navbar-toggler {
+    filter: invert(100%) sepia(3%) saturate(91%) hue-rotate(11deg) brightness(116%) contrast(100%);
+    border: none;
+}
+
+.dropdown-menu {
+    background-color: #111111;
+}
+
+/* button & input-text */
+.btn-primary, .input-text {
+    color: white !important;
+}
+
+.btn-primary:hover, .btn-primary:active, .input-text:focus {
+    box-shadow: 3px 3px 9px 3px rgba(0,0,0,0.5);
+}
+
+/* button */
+.btn-primary, .btn-primary:hover, .btn-primary:active {
+    background-color: black;
+    border-color: black;
+}
+
+/* input-text */
+.input-text {
+    background-color: #111;
+    border-color: #111;
+}
+
+.input-text:focus {
+    background-color: #111;
+    border-color: #111;
+}
+
+/* a */
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color:black;
+    text-decoration: underline;
+}
+
+/* :root {
     --background-color: #111111;
     --overlay-color: #222222;
     --font-color: #eeeeee;
@@ -12,9 +65,6 @@
     --blue-grotto: #60A3D9;
 }
 
-
-
-/* Tags */
 
 body {
     background-color: var(--background-color);
@@ -56,9 +106,6 @@ a {
 }
 
 
-
-/* Hilfsklassen */
-
 .center-text {
     text-align: center;
 }
@@ -76,7 +123,6 @@ a {
     background: linear-gradient(45deg, var(--royal-blue), var(--navy-blue));
 }
 
-/* Gastregistierung */
 
 #guestRegistrationTable {
     text-align: left;
@@ -87,9 +133,6 @@ a {
     margin-top: 50px;
 }
 
-
-
-/* Footer */
 
 #footer {
     position: fixed;
@@ -111,17 +154,13 @@ a {
 }
 
 
-
-/* Placeholder */
-
-/* Chrome, Firefox, Opera, Safari 10.1+ */
 ::placeholder { 
     color: var(--navy-blue);
     opacity: 1; /* Firefox */
 }
 
-/* Internet Explorer 10-11 */
+
 :-ms-input-placeholder { 
     color: var(--navy-blue);
 }
-h1 ~ h2 {color: rgb(72, 212, 147); }
+h1 ~ h2 {color: rgb(72, 212, 147); } */
