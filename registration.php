@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/theme.css" rel="stylesheet">
         <link href="css/base.css" rel="stylesheet">
-        <link href="css/login.css" rel="stylesheet">
+        <link href="css/entry.css" rel="stylesheet">
     </head>
     <body>
         <?php
@@ -14,14 +14,14 @@
         ?>
 
 
-        <div id="loginContainer" class="container-fluid" style="width: 25%; min-width: 300px;">
+        <div id="registrationContainer" class="container-fluid" style="width: 25%; min-width: 300px;">
             <h1>Gastregister</h1>
             <form class="text-center">
                 <div class="form-group">
-                    <input type="email" id="email" name="email" required placeholder="E-mail" />
+                    <input type="email" id="email" name="email" class="input-text form-control" required placeholder="E-mail" />
                 </div>
                 <div class="form-group mt-3">
-                <select name="honorifics" id="honorifics" required class="col-6">
+                <select id="honorifics" name="honorifics" class="input-text form-control" required>
                         <option value selected disabled>Ihre Auswahl</option>
                         <option value="male">Herr</option>
                         <option value="female">Frau</option>,
@@ -29,22 +29,22 @@
                     </select>
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" id="fname" name="fname" required maxlength="99" placeholder="Vorname" />
+                    <input type="text" id="fname" name="fname" class="input-text form-control" required maxlength="50" placeholder="Vorname" />
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" id="lname" name="lname" required maxlength="99" placeholder="Nachname" /> 
+                    <input type="text" id="lname" name="lname" class="input-text form-control" required maxlength="50" placeholder="Nachname" /> 
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" name="postalCode" id="postalCode" required minlength="3" placeholder="Postleitzahl">   
+                    <input type="text" id="postalCode" name="postalCode" class="input-text form-control" required minlength="3" placeholder="Postleitzahl">   
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" name="place" id="place" required placeholder="Ort">
+                    <input type="text" id="place" name="place" class="input-text form-control" required placeholder="Ort">
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" name="street" id="street" required placeholder="Straße">  
+                    <input type="text" id="street" name="street" class="input-text form-control" required placeholder="Straße">  
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" name="housenumber" id="housenumber" required maxlength="10" placeholder="Hausnummer">
+                    <input type="text" id="housenumber" name="housenumber" class="input-text form-control" required maxlength="10" placeholder="Hausnummer">
                 </div>
                 <button type="submit" class="btn btn-primary mt-4">Registrieren</button>
             </form>
