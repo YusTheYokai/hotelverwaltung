@@ -24,7 +24,7 @@
                 <div class="form-group mt-3">
                     <input type="password" class="input-text form-control" id="inputPassword" placeholder="Passwort">
                 </div>
-                <p id="notRegistered"><a href="guestRegistration.html">Sie sind noch nicht registiert?</a></p>
+                <p id="notRegistered"><a href="registration.php">Sie sind noch nicht registiert?</a></p>
                 <button type="submit" class="btn btn-primary mt-4">Login</button>
             </form>
         </div>
