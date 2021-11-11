@@ -1,25 +1,14 @@
-body {
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(60deg, rgb(63, 92, 146) 10%, rgb(126, 234, 255) 50%, rgb(253, 196, 120) 100%);
-    background-size: 100% 130%;
-    overflow-x: hidden;
-}
-
 #loginContainer {
     margin-top: 20vh;
 }
 
 #registrationContainer {
-    margin-top: 5vh;
+    margin-top: 10vh;
 }
 
 #loginContainer, #registrationContainer {
     width: 25%;
     min-width: 300px;
-    padding: 20px;
-    background-color: rgba(20, 20, 20, 0.25);
-    border-radius: 10px;
 }
 
 #notRegistered, #alreadyRegistered {

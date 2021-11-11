@@ -15,7 +15,7 @@
             include "menubar.html";
         ?>
         <!-- Login -->
-        <div id="loginContainer" class="container-fluid">
+        <div id="loginContainer" class="container-fluid overlay">
             <h1>Login</h1>
             <form class="text-center">
                 <div class="form-group">

@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
 
+:root {
+    --overlay-background-color: rgba(20, 20, 20, 0.25);
+}
+
+body {
+    background: linear-gradient(60deg, rgb(63, 92, 146) 0%, rgb(126, 234, 255) 50%, rgb(253, 196, 120) 100%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
 /* die hover für das drop-down-menu passen nicht */
 /* gleich wie beim button werden die buttons blau */
 /* navbar */

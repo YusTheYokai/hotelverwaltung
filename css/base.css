@@ -3,3 +3,9 @@
     margin-left: 4px;
     filter: invert(100%) sepia(3%) saturate(91%) hue-rotate(11deg) brightness(116%) contrast(100%);
 }
+
+.overlay {
+    padding: 20px;
+    background-color: var(--overlay-background-color);
+    border-radius: 10px;
+}

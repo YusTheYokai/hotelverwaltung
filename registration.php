@@ -14,7 +14,7 @@
         ?>
 
 
-        <div id="registrationContainer" class="container-fluid">
+        <div id="registrationContainer" class="container-fluid overlay">
             <h1>Gastregister</h1>
             <form class="text-center">
                 <div class="form-group">
