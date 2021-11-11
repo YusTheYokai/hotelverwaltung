@@ -3,6 +3,7 @@ body {
     height: 100vh;
     background: linear-gradient(60deg, rgb(63, 92, 146) 10%, rgb(126, 234, 255) 50%, rgb(253, 196, 120) 100%);
     background-size: 100% 130%;
+    overflow-x: hidden;
 }
 
 #loginContainer {
