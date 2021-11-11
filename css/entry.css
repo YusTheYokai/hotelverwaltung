@@ -11,16 +11,18 @@ body {
 }
 
 #registrationContainer {
-    margin-top: 10vh;
+    margin-top: 5vh;
 }
 
 #loginContainer, #registrationContainer {
+    width: 25%;
+    min-width: 300px;
     padding: 20px;
     background-color: rgba(20, 20, 20, 0.25);
     border-radius: 10px;
 }
 
-#notRegistered {
+#notRegistered, #alreadyRegistered {
     text-align: left !important;
     font-style: italic;
     margin-top: 5px;

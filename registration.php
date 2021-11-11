@@ -14,7 +14,7 @@
         ?>
 
 
-        <div id="registrationContainer" class="container-fluid" style="width: 25%; min-width: 300px;">
+        <div id="registrationContainer" class="container-fluid">
             <h1>Gastregister</h1>
             <form class="text-center">
                 <div class="form-group">
@@ -46,6 +46,7 @@
                 <div class="form-group mt-3">
                     <input type="text" id="housenumber" name="housenumber" class="input-text form-control" required maxlength="10" placeholder="Hausnummer">
                 </div>
+                <p id="alreadyRegistered"><a href="login.php">Sie sind bereits registiert?</a></p>
                 <button type="submit" class="btn btn-primary mt-4">Registrieren</button>
             </form>
         </div>

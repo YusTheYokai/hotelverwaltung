@@ -15,7 +15,7 @@
             include "menubar.html";
         ?>
         <!-- Login -->
-        <div id="loginContainer" class="container-fluid" style="width: 25%; min-width: 300px;">
+        <div id="loginContainer" class="container-fluid">
             <h1>Login</h1>
             <form class="text-center">
                 <div class="form-group">
