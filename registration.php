@@ -10,15 +10,15 @@
     </head>
     <body>
         <?php
+            $lang = parse_ini_file("lang/de.ini", TRUE)['registration'];
             include "menubar.html";
         ?>
 
-
         <div id="registrationContainer" class="container-fluid overlay">
             <h1>Gastregister</h1>
-            <form class="text-center">
+            <form class="text-center" action="registrationController.php" method="get">
                 <div class="form-group">
-                    <input type="email" id="email" name="email" class="input-text form-control" required placeholder="E-mail" />
+                    <input type="email" id="email" name="email" class="input-text form-control" required placeholder=<?=$lang["email"]?> />
                 </div>
                 <div class="form-group mt-3">
                 <select id="honorifics" name="honorifics" class="input-text form-control" required>
@@ -29,22 +29,22 @@
                     </select>
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" id="fname" name="fname" class="input-text form-control" required maxlength="50" placeholder="Vorname" />
+                    <input type="text" id="firstName" name="firstName" class="input-text form-control" required maxlength="50" placeholder="<?=$lang["firstName"]?>" />
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" id="lname" name="lname" class="input-text form-control" required maxlength="50" placeholder="Nachname" /> 
+                    <input type="text" id="lastName" name="lastName" class="input-text form-control" required maxlength="50" placeholder="<?=$lang["lastName"]?>" /> 
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" id="postalCode" name="postalCode" class="input-text form-control" required minlength="3" placeholder="Postleitzahl">   
+                    <input type="text" id="postalCode" name="postalCode" class="input-text form-control" required minlength="3" placeholder="<?=$lang["postalCode"]?>">   
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" id="place" name="place" class="input-text form-control" required placeholder="Ort">
+                    <input type="text" id="place" name="place" class="input-text form-control" required placeholder="<?=$lang["place"]?>">
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" id="street" name="street" class="input-text form-control" required placeholder="Straße">  
+                    <input type="text" id="street" name="street" class="input-text form-control" required placeholder="<?=$lang["street"]?>">  
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" id="housenumber" name="housenumber" class="input-text form-control" required maxlength="10" placeholder="Hausnummer">
+                    <input type="text" id="housenumber" name="housenumber" class="input-text form-control" required maxlength="10" placeholder="<?=$lang["housenumber"]?>">
                 </div>
                 <p id="alreadyRegistered"><a href="login.php">Sie sind bereits registiert?</a></p>
                 <button type="submit" class="btn btn-primary mt-4">Registrieren</button>
