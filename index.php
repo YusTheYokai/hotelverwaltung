@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    if (array_key_exists("logout", $_GET)) {
+        $logout = $_GET["logout"];
+        if (isset($logout) && $logout) {
+            session_unset();
+            session_destroy();
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,7 +22,7 @@
     </head>
     <body>
         <?php
-            include "menubar.html";
+            include "menubar.php";
         ?>
         <div style="margin-top: 80px;">
             <?php

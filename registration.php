@@ -11,7 +11,7 @@
     <body>
         <?php
             $lang = parse_ini_file("lang/de.ini", TRUE)['registration'];
-            include "menubar.html";
+            include "menubar.php";
         ?>
 
         <div id="registrationContainer" class="container-fluid overlay">

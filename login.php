@@ -1,3 +1,20 @@
+<?php
+    session_start();
+    $validationFailed = FALSE;
+    if($_SERVER["REQUEST_METHOD"] === "POST") {
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+        if (isset($username) && isset($password)) {
+            if ($password === "passwort") {
+                $_SESSION["user"] = $username;
+                header("Location: index.php");
+            } else {
+                $validationFailed = TRUE;
+            }
+        }
+    }
+    ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,18 +29,23 @@
     </head>
     <body>
         <?php
-            include "menubar.html";
+            include "menubar.php";
         ?>
         <!-- Login -->
         <div id="loginContainer" class="container-fluid overlay">
             <h1>Login</h1>
-            <form class="text-center">
+            <form class="text-center" method="POST">
                 <div class="form-group">
-                    <input type="email" class="input-text form-control" id="inputEmail" placeholder="E-Mail">
+                    <input id="inputUsername" name="username" type="text" class="input-text form-control" placeholder="Nutzername" required>
                 </div>
                 <div class="form-group mt-3">
-                    <input type="password" class="input-text form-control" id="inputPassword" placeholder="Passwort">
+                    <input id="inputPassword" name="password" type="password" class="input-text form-control" placeholder="Passwort" required>
                 </div>
+                <?php 
+                    if ($validationFailed) {
+                        echo "<p id='wrongCredentials'>Benutzername oder Passwort falsch.</p>";
+                    }
+                ?>
                 <p id="notRegistered"><a href="registration.php">Sie sind noch nicht registiert?</a></p>
                 <button type="submit" class="btn btn-primary mt-4">Login</button>
             </form>
