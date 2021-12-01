@@ -10,8 +10,6 @@ body {
     overflow-x: hidden;
 }
 
-/* die hover für das drop-down-menu passen nicht */
-/* gleich wie beim button werden die buttons blau */
 /* navbar */
 .navbar {
     background-color: black !important;
@@ -30,21 +28,24 @@ body {
     background-color: #111111;
 }
 
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: #111111;
+}
+
 /* button & input-text */
 .btn-primary, .input-text {
     color: white !important;
 }
 
 .btn-primary:hover, .btn-primary:active, .input-text:focus {
-    box-shadow: 3px 3px 9px 3px rgba(0,0,0,0.5);
+    box-shadow: 3px 3px 9px 3px rgba(0,0,0,0.5) !important;
 }
 
-/* TODO: wenn der klick auf einem button gehalten wird, dann kommt ein blauer box-shadow */
-/* TODO: wenn man dann vom button runter geht und den klick los lässt wird der button blau  */
 /* button */
-.btn-primary, .btn-primary:hover, .btn-primary:active {
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
     background-color: black;
     border-color: black;
+    box-shadow: none;
 }
 
 /* input-text */

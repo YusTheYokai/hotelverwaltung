@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if (array_key_exists("logout", $_GET)) {
+    if (isset($_GET["logout"])) {
         $logout = $_GET["logout"];
         if (isset($logout) && $logout) {
             session_unset();

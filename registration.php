@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
     <head>
-        <title>Gastregister</title>
+        <title>Registrierung</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/theme.css" rel="stylesheet">
@@ -15,7 +15,7 @@
         ?>
 
         <div id="registrationContainer" class="container-fluid overlay">
-            <h1>Gastregister</h1>
+            <h1>Registrierung</h1>
             <form class="text-center" action="registrationController.php" method="get">
                 <div class="form-group">
                     <input type="email" id="email" name="email" class="input-text form-control" required placeholder=<?=$lang["email"]?> />
