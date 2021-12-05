@@ -6,11 +6,6 @@
     margin-top: 10vh;
 }
 
-#loginContainer, #registrationContainer {
-    width: 25%;
-    min-width: 300px;
-}
-
 #notRegistered, #alreadyRegistered {
     text-align: left !important;
     font-style: italic;

@@ -9,3 +9,8 @@
     background-color: var(--overlay-background-color);
     border-radius: 10px;
 }
+
+.quarter-width {
+    width: 25%;
+    min-width: 300px;
+}

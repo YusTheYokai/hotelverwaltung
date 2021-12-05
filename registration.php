@@ -14,7 +14,7 @@
             include "menubar.php";
         ?>
 
-        <div id="registrationContainer" class="container-fluid overlay">
+        <div id="registrationContainer" class="container-fluid overlay quarter-width">
             <h1>Registrierung</h1>
             <form class="text-center" action="registrationController.php" method="get">
                 <div class="form-group">

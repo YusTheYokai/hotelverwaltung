@@ -6,6 +6,7 @@
         $password = $_POST["password"];
         if (isset($username) && isset($password)) {
             if ($password === "passwort") {
+                createFolderIfAbsent($username);
                 $_SESSION["user"] = $username;
                 header("Location: index.php");
             } else {
@@ -13,7 +14,14 @@
             }
         }
     }
-    ?>
+    
+    function createFolderIfAbsent($username) {
+        $path = "uploads/" . $username;
+        if (!is_dir($path)) {
+            error_log("Im If-Statement", 0);
+            mkdir($path, 0777);
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +40,7 @@
             include "menubar.php";
         ?>
         <!-- Login -->
-        <div id="loginContainer" class="container-fluid overlay">
+        <div id="loginContainer" class="container-fluid overlay quarter-width">
             <h1>Login</h1>
             <form class="text-center" method="POST">
                 <div class="form-group">
