@@ -1,34 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Ticket</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="css/theme.css" rel="stylesheet">
-    <link href="css/base.css" rel="stylesheet">
-    <link href="css/ticket.css" rel="stylesheet">
-</head>
-<body>
-    <?php
-        include "menubar.php";
-    ?>
-    <div id="createTicketContainer" class="container-fluid overlay quarter-width">
-        <h1>Ticket erstellen</h1>
-        <form class="text-center" method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-                <input id="inputTitle" name="title" type="text" class="input-text form-control" placeholder="Titel" required>
-            </div>
-            <div class="form-group mt-3">
-                <textarea id="inputDescription" name="description" class="input-text form-control" placeholder="Beschreibung" required></textarea>
-            </div>
-            <div class="form-group mt-3">
-                <input id="fileToUpload" name="fileToUpload" type="file">
-            </div>
-            <button type="submit" class="btn btn-primary mt-4">Erstellen</button>
-        </form>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</body>
-</html>
+<?php
+    if (isset($_FILES["picture"])) {
+        $maxFileSize = 15 * 1000 * 1000;
+        $target_dir = "uploads/" . $_SESSION["user"] . "/";
+        $file = $_FILES["picture"];
+        $fileName = $file["name"];
+        $target_file = $target_dir . basename($fileName);
+        
+        // Check if the file is of the accepted file type
+        if (pathinfo($fileName, PATHINFO_EXTENSION) !== "jpeg") {
+            echo "<p class='red'>Sorry, only JPEG-files can be accepted!</p>";
+            return;
+        // Check if the file size is below the maximum limit
+        } else if ($file["size"] > $maxFileSize) {
+            echo "<p class='red'>Sorry, only JPEG-files of 15MB or less can be accepted!</p>";
+            return;
+        // Check if the file already exists
+        } else if (file_exists($target_file)) {
+            echo "<p class='red'>Sorry, file already exists!</p>";
+            return;
+        }
+        
+        // If everything is OK, upload the file
+        if (move_uploaded_file($file["tmp_name"], $target_file)) {
+            list($width, $height) = getimagesize($target_file);
+            $thumbnail = imagecreatetruecolor(720, 480);
+            $source = imagecreatefromjpeg($target_file);
+            if(imagecopyresized($thumbnail, $source, 0, 0, 0, 0, 720, 480, $width, $height) && imagejpeg($thumbnail, $target_dir . "thumbnails/" . $fileName)) {
+                echo "<p class='green'>The file ";
+                echo $fileName;
+                echo " has been uploaded</p>";
+            }
+        }
+    }
+?>
