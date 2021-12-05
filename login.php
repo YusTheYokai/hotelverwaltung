@@ -14,11 +14,17 @@
             }
         }
     }
-    
+
     function createFolderIfAbsent($username) {
         $path = "uploads/" . $username;
         if (!is_dir($path)) {
-            mkdir($path, 0777);
+            $success = mkdir($path, 0777);
+            if ($success) {
+                $success = mkdir($path . "/thumbnails");
+                if (!$success) {
+                    error_log("Ordern für " . $username . " konnte nicht erstellt werden.");
+                }
+            }
         }
     }
 ?>
