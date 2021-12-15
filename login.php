@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include("logIntoDB.php");
 
     $validationFailed = FALSE;
@@ -6,12 +7,8 @@
         $username = $_POST["username"];
         $password = $_POST["password"];
         if (isset($username) && isset($password)) {
-            $query = "SELECT PASSWORD FROM USER WHERE USERNAME LIKE ?";
-            $statement = $db->prepare($query);
-            $statement->bind_param("s", $username);
-            $statement->execute();
-            $row = $statement->get_result()->fetch_assoc();
-            if (!empty(row) && sha1($password) == $row["PASSWORD"]) {
+            $row = getUserPassword($db, $username);
+            if (!empty($row) && sha1($password) == $row["PASSWORD"]) {
                 createFolderIfAbsent($username);
                 $_SESSION["user"] = $username;
                 header("Location: index.php");
@@ -19,6 +16,22 @@
                 $validationFailed = TRUE;
             }
         }
+    }
+
+    /**
+     * Gibt das Ergebnis der Suche nach dem Password des übergebenen Usernames zurück.
+     * @param mysqli $db Datenbankverbindung
+     * @param string $username Username, für welchen das Passwort gesucht wird
+     * @return array
+     * Gibt das Datenbankergebnis, welches leer ist, falls es keinen User mit dem Username gibt, zurück.
+     * Gibt es den User kann mit ["PASSWORD"] auf das gehashte Passwort zugegriffen werden.
+     */
+    function getUserPassword($db, $username) {
+        $query = "SELECT PASSWORD FROM USER WHERE USERNAME LIKE ?";
+        $statement = $db->prepare($query);
+        $statement->bind_param("s", $username);
+        $statement->execute();
+        return $statement->get_result()->fetch_assoc();
     }
 
     function createFolderIfAbsent($username) {
