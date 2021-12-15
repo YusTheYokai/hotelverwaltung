@@ -1,11 +1,17 @@
 <?php
-    session_start();
+    include("logIntoDB.php");
+
     $validationFailed = FALSE;
     if($_SERVER["REQUEST_METHOD"] === "POST") {
         $username = $_POST["username"];
         $password = $_POST["password"];
         if (isset($username) && isset($password)) {
-            if ($password === "passwort") {
+            $query = "SELECT PASSWORD FROM USER WHERE USERNAME LIKE ?";
+            $statement = $db->prepare($query);
+            $statement->bind_param("s", $username);
+            $statement->execute();
+            $row = $statement->get_result()->fetch_assoc();
+            if (!empty(row) && sha1($password) == $row["PASSWORD"]) {
                 createFolderIfAbsent($username);
                 $_SESSION["user"] = $username;
                 header("Location: index.php");
