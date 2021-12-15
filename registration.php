@@ -1,3 +1,22 @@
+<?php
+    session_start();
+    include("logIntoDB.php");
+
+    // TODO: Prüfen, ob Nutzer die Rechte hat auf die Seite zuzugreifen
+
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $username = $_POST["username"];
+        $honorific = $_POST["honorific"];
+        $firstName = $_POST["firstName"];
+        $lastName = $_POST["lastName"];
+        $email = $_POST["email"];
+        $password = sha1($_POST["password"]);
+        $query = "INSERT INTO USER (HONORIFIC, FIRST_NAME, LAST_NAME, EMAIL, USERNAME, PASSWORD) VALUES (?, ?, ?, ?, ?, ?);";
+        $statement = $db->prepare($query);
+        $statement->bind_param("ssssss", $honorific, $firstName, $lastName, $email, $username, $password);
+        $statement->execute();
+    }
+?>
 <!DOCTYPE html>
 <html lang="de">
     <head>
@@ -16,37 +35,30 @@
 
         <div id="registrationContainer" class="container-fluid overlay quarter-width">
             <h1>Registrierung</h1>
-            <form class="text-center" action="registrationController.php" method="get">
+            <form class="text-center" method="POST"> <!-- action="registrationController.php" -->
                 <div class="form-group">
-                    <input type="email" id="email" name="email" class="input-text form-control" required placeholder=<?=$lang["email"]?> />
+                    <input type="text" id="username" name="username" class="input-text form-control" required maxlength="20" placeholder="<?=$lang["username"]?>" />
                 </div>
                 <div class="form-group mt-3">
-                <select id="honorifics" name="honorifics" class="input-text form-control" required>
-                        <option value selected disabled>Ihre Auswahl</option>
+                    <select id="honorific" name="honorific" class="input-text form-control" required>
+                        <option value selected disabled>Anrede</option>
                         <option value="male">Herr</option>
-                        <option value="female">Frau</option>,
+                        <option value="female">Frau</option>
                         <option value="other">Divers</option>
                     </select>
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" id="firstName" name="firstName" class="input-text form-control" required maxlength="50" placeholder="<?=$lang["firstName"]?>" />
+                    <input type="text" id="firstName" name="firstName" class="input-text form-control" required maxlength="30" placeholder="<?=$lang["firstName"]?>" />
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" id="lastName" name="lastName" class="input-text form-control" required maxlength="50" placeholder="<?=$lang["lastName"]?>" /> 
+                    <input type="text" id="lastName" name="lastName" class="input-text form-control" required maxlength="30" placeholder="<?=$lang["lastName"]?>" /> 
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" id="postalCode" name="postalCode" class="input-text form-control" required minlength="3" placeholder="<?=$lang["postalCode"]?>">   
+                    <input type="email" id="email" name="email" class="input-text form-control" required maxlength="50" placeholder=<?=$lang["email"]?> />
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" id="place" name="place" class="input-text form-control" required placeholder="<?=$lang["place"]?>">
+                    <input type="password" id="password" name="password" class="input-text form-control" required maxlength="50" placeholder=<?=$lang["password"]?> />
                 </div>
-                <div class="form-group mt-3">
-                    <input type="text" id="street" name="street" class="input-text form-control" required placeholder="<?=$lang["street"]?>">  
-                </div>
-                <div class="form-group mt-3">
-                    <input type="text" id="housenumber" name="housenumber" class="input-text form-control" required maxlength="10" placeholder="<?=$lang["housenumber"]?>">
-                </div>
-                <p id="alreadyRegistered"><a href="login.php">Sie sind bereits registiert?</a></p>
                 <button type="submit" class="btn btn-primary mt-4">Registrieren</button>
             </form>
         </div>
