@@ -15,7 +15,7 @@
     </head>
     <body>
         <?php
-            include "../menubar.php";
+            include "../../menubar.php";
         ?>
         <div class="container-fluid overlay quarter-width">
             <h1><?=$title?></h1>
