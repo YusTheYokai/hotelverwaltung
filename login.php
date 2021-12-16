@@ -7,10 +7,10 @@
         $username = $_POST["username"];
         $password = $_POST["password"];
         if (isset($username) && isset($password)) {
-            $row = getUserPassword($db, $username);
-            if (!empty($row) && sha1($password) == $row["PASSWORD"]) {
+            $user = getUserPassword($db, $username);
+            if (!empty($user) && sha1($password) == $user["PASSWORD"]) {
                 createFolderIfAbsent($username);
-                $_SESSION["user"] = $username;
+                $_SESSION["user"] = $user;
                 header("Location: index.php");
             } else {
                 $validationFailed = TRUE;
@@ -27,7 +27,7 @@
      * Gibt es den User kann mit ["PASSWORD"] auf das gehashte Passwort zugegriffen werden.
      */
     function getUserPassword($db, $username) {
-        $query = "SELECT PASSWORD FROM USER WHERE USERNAME LIKE ?";
+        $query = "SELECT * FROM USER WHERE USERNAME LIKE ?";
         $statement = $db->prepare($query);
         $statement->bind_param("s", $username);
         $statement->execute();

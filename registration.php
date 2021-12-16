@@ -1,10 +1,17 @@
 <?php
     session_start();
-    include("logIntoDB.php");
 
-    // TODO: Prüfen, ob Nutzer die Rechte hat auf die Seite zuzugreifen
+    if (!isset($_SESSION["user"])) {
+        header("Location: errorPages/401.php");
+        exit();
+    }
+    else if ($_SESSION["user"]["ROLE"] !== 2) {
+        header("Location: errorPages/403.php");
+        exit();
+    }
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        include("logIntoDB.php");
         $username = $_POST["username"];
         $honorific = $_POST["honorific"];
         $firstName = $_POST["firstName"];

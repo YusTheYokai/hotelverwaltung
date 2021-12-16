@@ -27,7 +27,7 @@
                     <a class="nav-link active dropdown-toggle" aria-current="page" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <?php
                             if (isset($_SESSION["user"])) {
-                                echo $_SESSION["user"];
+                                echo $_SESSION["user"]["FIRST_NAME"] . " " . $_SESSION["user"]["LAST_NAME"];
                             } else {
                                 echo "User";
                             }
