@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <?php
-        include "../menubar.php";
-    ?>
-</body>
-</html>
+<?php
+    $title = "401 - Nicht autorisiert";
+    $details = "Sie sind nicht eingeloggt. Bitte loggen Sie sich ein und versuchen Sie es erneut.";
+    $image = "https://http.cat/401";
+    include "errorTemplate.php";
+?>

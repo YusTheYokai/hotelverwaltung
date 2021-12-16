@@ -7,18 +7,18 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php">
-                        Home<img src="icon/house-fill.svg" class="icon" alt="Home-Icon" />
+                    <a class="nav-link" href="/index.php">
+                        Home<img src="/icon/house-fill.svg" class="icon" alt="Home-Icon" />
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="imprint.html">
-                        Impressum<img src="icon/info-circle-fill.svg" class="icon" alt="Info-Icon" />
+                    <a class="nav-link" href="/imprint.html">
+                        Impressum<img src="/icon/info-circle-fill.svg" class="icon" alt="Info-Icon" />
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="help.html">
-                        Hilfe<img src="icon/question-circle-fill.svg" class="icon" alt="Question-Icon" />
+                    <a class="nav-link" href="/help.html">
+                        Hilfe<img src="/icon/question-circle-fill.svg" class="icon" alt="Question-Icon" />
                     </a>
                 </li>
             </ul>
@@ -31,16 +31,16 @@
                             } else {
                                 echo "User";
                             }
-                        ?><img src='icon/person-circle.svg' class='icon' alt='Person-Icon' />
+                        ?><img src='/icon/person-circle.svg' class='icon' alt='Person-Icon' />
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                         <?php
                             if (isset($_SESSION["user"])) {
-                                echo "<li><a class='dropdown-item' href='profile.php'>Profil bearbeiten<img src='icon/pencil-fill.svg' class='icon' alt='Bearbeiten-Icon' /></a></li>";
-                                echo "<li><a class='dropdown-item' href='index.php?logout=true'>Logout<img src='icon/box-arrow-right.svg' class='icon' alt='Logout-Icon' /></a></li>";
+                                echo "<li><a class='dropdown-item' href='/profile.php'>Profil bearbeiten<img src='/icon/pencil-fill.svg' class='icon' alt='Bearbeiten-Icon' /></a></li>";
+                                echo "<li><a class='dropdown-item' href='/index.php?logout=true'>Logout<img src='/icon/box-arrow-right.svg' class='icon' alt='Logout-Icon' /></a></li>";
                             } else {
-                                echo "<li><a class='dropdown-item' href='login.php'>Login<img src='icon/box-arrow-in-left.svg' class='icon' alt='Login-Icon' /></a></li>";
-                                echo "<li><a class='dropdown-item' href='registration.php'>Registrierung<img src='icon/key-fill.svg' class='icon' alt='Key-Icon' /></a></li>";
+                                echo "<li><a class='dropdown-item' href='/login.php'>Login<img src='/icon/box-arrow-in-left.svg' class='icon' alt='Login-Icon' /></a></li>";
+                                echo "<li><a class='dropdown-item' href='/registration.php'>Registrierung<img src='/icon/key-fill.svg' class='icon' alt='Key-Icon' /></a></li>";
                             }
                         ?>
                     </ul>
