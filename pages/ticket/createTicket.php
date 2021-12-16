@@ -1,7 +1,7 @@
 <?php
     if (isset($_FILES["picture"])) {
         $maxFileSize = 15 * 1000 * 1000;
-        $target_dir = "uploads/" . $_SESSION["user"] . "/";
+        $target_dir = "/uploads/" . $_SESSION["user"] . "/";
         $file = $_FILES["picture"];
         $fileName = $file["name"];
         $target_file = $target_dir . basename($fileName);

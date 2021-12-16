@@ -36,11 +36,11 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                         <?php
                             if (isset($_SESSION["user"])) {
-                                echo "<li><a class='dropdown-item' href='/profile.php'>Profil bearbeiten<img src='/icon/pencil-fill.svg' class='icon' alt='Bearbeiten-Icon' /></a></li>";
+                                echo "<li><a class='dropdown-item' href='/pages/profile.php'>Profil bearbeiten<img src='/icon/pencil-fill.svg' class='icon' alt='Bearbeiten-Icon' /></a></li>";
                                 echo "<li><a class='dropdown-item' href='/index.php?logout=true'>Logout<img src='/icon/box-arrow-right.svg' class='icon' alt='Logout-Icon' /></a></li>";
                             } else {
-                                echo "<li><a class='dropdown-item' href='/login.php'>Login<img src='/icon/box-arrow-in-left.svg' class='icon' alt='Login-Icon' /></a></li>";
-                                echo "<li><a class='dropdown-item' href='/registration.php'>Registrierung<img src='/icon/key-fill.svg' class='icon' alt='Key-Icon' /></a></li>";
+                                echo "<li><a class='dropdown-item' href='/pages/login.php'>Login<img src='/icon/box-arrow-in-left.svg' class='icon' alt='Login-Icon' /></a></li>";
+                                echo "<li><a class='dropdown-item' href='/pages/registration/registration.php'>Registrierung<img src='/icon/key-fill.svg' class='icon' alt='Key-Icon' /></a></li>";
                             }
                         ?>
                     </ul>
