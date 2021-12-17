@@ -3,7 +3,7 @@
     require_once "../db/logIntoDB.php";
 
     $validationFailed = FALSE;
-    if($_SERVER["REQUEST_METHOD"] === "POST") {
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $username = $_POST["username"];
         $password = $_POST["password"];
         if (isset($username) && isset($password)) {
@@ -11,7 +11,7 @@
             if (!empty($user) && sha1($password) == $user["PASSWORD"]) {
                 createFolderIfAbsent($username);
                 $_SESSION["user"] = $user;
-                header("Location: ../pages/index.php");
+                header("Location: ../index.php");
             } else {
                 $validationFailed = TRUE;
             }
