@@ -2,6 +2,12 @@
 
 :root {
     --overlay-background-color: rgba(20, 20, 20, 0.25);
+    --dialog-background-color: rgb(49, 49, 49);
+
+    --text-color: white;
+
+    --primary: black;
+    --secondary: gray;
 }
 
 body {
@@ -16,7 +22,7 @@ body {
 }
 
 .navbar a {
-    color: white !important;
+    color: var(--text-color) !important;
 }
 
 .navbar-toggler {
@@ -33,8 +39,8 @@ body {
 }
 
 /* button & input-text */
-.btn-primary, .input-text {
-    color: white !important;
+.btn, .input-text {
+    color: var(--text-color) !important;
 }
 
 .btn-primary:hover, .btn-primary:active, .input-text:focus {
@@ -42,10 +48,22 @@ body {
 }
 
 /* button */
+.btn {
+    box-shadow: none !important;
+}
+
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
-    background-color: black;
-    border-color: black;
-    box-shadow: none;
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-secondary, .btn-secondary:hover, .btn-secondary:active, .btn-secondary:focus {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.btn-secondary:hover, .btn-secondary:active {
+    box-shadow: 3px 3px 9px 3px rgba(128, 128, 128, 0.5) !important;
 }
 
 /* input-text */
@@ -68,4 +86,39 @@ a {
 a:hover {
     color:black;
     text-decoration: underline;
+}
+
+/*                */
+/* EIGENE KLASSEN */
+/*                */
+
+.icon {
+    margin-bottom: 4px;
+    margin-left: 7px;
+    filter: invert(100%) sepia(3%) saturate(91%) hue-rotate(11deg) brightness(116%) contrast(100%);
+}
+
+.overlay, .dialog-overlay {
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.overlay {
+    background-color: var(--overlay-background-color);
+}
+
+/* dialog */
+
+.dialog {
+    background-color: var(--dialog-background-color);
+    color: var(--text-color);
+}
+
+.dialog .modal-header,.dialog .modal-footer {
+    border: none;
+}
+
+.quarter-width {
+    width: 25%;
+    min-width: 300px;
 }
