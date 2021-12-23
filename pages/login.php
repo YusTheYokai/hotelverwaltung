@@ -35,7 +35,7 @@
     }
 
     function createFolderIfAbsent($username) {
-        $path = "/uploads/" . $username;
+        $path = "../uploads/" . $username;
         if (!is_dir($path)) {
             $success = mkdir($path, 0777);
             if ($success) {
