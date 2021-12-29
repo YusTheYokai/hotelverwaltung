@@ -31,8 +31,8 @@
         <a href="<?=$setActiveUrl?>" class="table-icon-button" title="<?=$title?>">
             <img src="<?=$icon?>" alt="<?=$alt?>" />
         </a>
-        <a title="Passwort ändern" class="table-icon-button">
-            <img src="../../icon/key-fill.svg" alt="Schlüssel Icon" />
+        <a title="Stammdaten ändern" class="table-icon-button">
+            <img src="../../icon/person-circle.svg" alt="User Icon" />
         </a>
     </td>
 </tr>
