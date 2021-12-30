@@ -1,5 +1,10 @@
 <?php
     session_start();
+    if (isset($_SESSION["user"])) {
+        header("Location: ../index.php");
+        exit;
+    }
+
     require_once "../db/logIntoDB.php";
 
     $validationFailed = FALSE;
@@ -9,9 +14,9 @@
         if (isset($username) && isset($password)) {
             $user = getUserPassword($db, $username);
             if (!empty($user) && sha1($password) == $user["PASSWORD"]) {
+                header("Location: ../index.php");
                 createFolderIfAbsent($username);
                 $_SESSION["user"] = $user;
-                header("Location: ../index.php");
             } else {
                 $validationFailed = TRUE;
             }
