@@ -1,6 +1,7 @@
 <?php
     session_start();
     require "db/logIntoDB.php";
+    require "guard.php";
 
     // Wenn der logout-Parameter geschickt wird soll überprüft werden,
     // ob dieser true ist. Ist dies der Fall wird der User ausgeloggt.
@@ -13,10 +14,10 @@
     }
 
     // Laden aller News-Posts aus der Datenbank.
-    $selectAllQuery = "SELECT TITLE, CONTENT, PICTURE, CREATION_TIME, FIRST_NAME, LAST_NAME FROM news_post JOIN user ON (news_post.USER_ID = user.ID) ORDER BY CREATION_TIME DESC;";
+    $selectAllQuery = "SELECT TITLE, CONTENT, PICTURE, CREATION_TIME, FIRST_NAME, LAST_NAME, USERNAME FROM news_post JOIN user ON (news_post.USER_ID = user.ID) ORDER BY CREATION_TIME DESC;";
     $selectAllStatement = $db->prepare($selectAllQuery);
     $selectAllStatement->execute();
-    $selectAllStatement->bind_result($title, $content, $picture, $creationTime, $firstName, $lastName);
+    $selectAllStatement->bind_result($title, $content, $picture, $creationTime, $firstName, $lastName, $username);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,14 +32,14 @@
         <link href="/css/newsPost.css" rel="stylesheet">
     </head>
     <body>
-        <?=include "menubar.php";?>
+        <?php include "menubar.php";?>
         <?php
-            if ($_SESSION["user"] && $_SESSION["user"]["ROLE"] === 2) {
+            if (isAdmin()) {
                 include "index/createNewsPostButton.php";
                 include "index/newsPostDialog.php";
             }
         ?>
-        <div style="margin-top: 80px;">
+        <div style="margin-top: <?=isAdmin() ? '20' : '80'?>px;">
             <?php
                 while ($selectAllStatement->fetch()) {
                     include "entities/newsPost.php";
