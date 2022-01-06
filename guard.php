@@ -35,7 +35,7 @@
      */
     function guardAdmin() {
         guardLoggedIn();
-        if (isAdmin()) {
+        if (!isAdmin()) {
             header("Location: /pages/errorPages/403.php");
             exit();
         }
