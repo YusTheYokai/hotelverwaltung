@@ -1,14 +1,8 @@
 <?php
+    require "../../guard.php";
     session_start();
 
-    if (!isset($_SESSION["user"])) {
-        header("Location: /pages/errorPages/401.php");
-        exit();
-    }
-    else if ($_SESSION["user"]["ROLE"] !== 2) {
-        header("Location: /pages/errorPages/403.php");
-        exit();
-    }
+    guardAdmin($_SESSION["user"]);
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         include("logIntoDB.php");

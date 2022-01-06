@@ -3,7 +3,7 @@
 
     $picturePath = "images/noImage.png";
     if ($picture) {
-        $picturePath = "\"uploads/" . $_SESSION["user"]["USERNAME"] . "/thumbnails/" . $picture . "\"";
+        $picturePath = "\"uploads/" . $username . "/thumbnails/" . $picture . "\"";
     }
 ?>
 <!-- TODO: Vielleicht kann man es machen,
