@@ -91,6 +91,20 @@ a:hover {
     text-decoration: underline;
 }
 
+.dropdown-item {
+    color: aliceblue;
+}
+
+.dropdown-item:hover {
+    color: aliceblue;
+    text-decoration: underline;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
 /*                */
 /* EIGENE KLASSEN */
 /*                */
@@ -169,6 +183,11 @@ a:hover {
 .custom-table td:last-child {
     width: 1%;
     text-align: center;
+}
+
+.table-icon-button {
+    background: none;
+    border: none;
 }
 
 .table-icon-button:hover {
