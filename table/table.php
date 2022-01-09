@@ -6,7 +6,7 @@
                 <tr>
                     <?php
                         foreach ($columnsArray as $col) {
-                            if ($col !== "ID") {
+                            if (!str_contains($col, "ID") && !str_contains($ignoreColumns, $col)) {
                                 include "th.php";
                             }
                         }
