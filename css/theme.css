@@ -80,6 +80,11 @@ h1 {
     border-color: #111;
 }
 
+.input-text:disabled {
+    background-color: #333;
+    border-color: #333;
+}
+
 /* a */
 a {
     color: black;
@@ -89,6 +94,11 @@ a {
 a:hover {
     color:black;
     text-decoration: underline;
+}
+
+/* toast-container */
+.toast-container {
+    margin-top: 56px;
 }
 
 /*                */
