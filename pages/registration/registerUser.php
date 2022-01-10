@@ -11,7 +11,6 @@
         new TextValidateable("PASSWORD", $_POST, 8, 50),
         new NumberValidateable("ROLE", $_POST, 0, 1)
     );
-    error_log("GUEST_TECHNICIAN: " . $_POST["GUEST_TECHNICIAN"]);
     $validator->validate();
     if ($validator->hasFailed()) {
         header("Location: registration.php?" . $validator->generateUrlErrorParams());
