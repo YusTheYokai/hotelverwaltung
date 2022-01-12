@@ -23,6 +23,7 @@
         }
     }
 
+    // TODO: Name der Funktion passt nicht ganz so
     /**
      * Gibt das Ergebnis der Suche nach dem Password des übergebenen Usernames zurück.
      * @param mysqli $db Datenbankverbindung

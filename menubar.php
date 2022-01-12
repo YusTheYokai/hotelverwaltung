@@ -1,3 +1,6 @@
+<?php
+    require_once "guard.php";
+?>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Hotelverwaltung</a>
@@ -21,6 +24,11 @@
                         Hilfe<img src="/icon/question-circle-fill.svg" class="icon" alt="Question-Icon" />
                     </a>
                 </li>
+                <?php
+                    if (isAdmin()) {
+                        require "menubar/adminMenubarLinks.php";
+                    }
+                ?>
             </ul>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
@@ -36,7 +44,7 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                         <?php
                             if (isset($_SESSION["user"])) {
-                                echo "<li><a class='dropdown-item' href='/pages/profile.php'>Profil bearbeiten<img src='/icon/pencil-fill.svg' class='icon' alt='Bearbeiten-Icon' /></a></li>";
+                                echo "<li><a class='dropdown-item' href='/pages/profile/profile.php'>Profil bearbeiten<img src='/icon/pencil-fill.svg' class='icon' alt='Bearbeiten-Icon' /></a></li>";
                                 echo "<li><a class='dropdown-item' href='/index.php?logout=true'>Logout<img src='/icon/box-arrow-right.svg' class='icon' alt='Logout-Icon' /></a></li>";
                             } else {
                                 echo "<li><a class='dropdown-item' href='/pages/login.php'>Login<img src='/icon/box-arrow-in-left.svg' class='icon' alt='Login-Icon' /></a></li>";
