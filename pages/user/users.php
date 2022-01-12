@@ -1,7 +1,7 @@
 <?php
-    require "../../db/logIntoDB.php";
-    require "../../guard.php";
-    require "../../translator.php";
+    require_once "../../db/logIntoDB.php";
+    require_once "../../guard.php";
+    require_once "../../translator.php";
 
     session_start();
     guardAdmin();
@@ -9,7 +9,7 @@
     $columns = "ID,HONORIFIC,LAST_NAME,FIRST_NAME,USERNAME,ACTIVE";
     $query = "SELECT $columns FROM user";
    
-    require "../../table/tableLogic.php";
+    require_once "../../table/tableLogic.php";
 
     $statement = $db->prepare($query);
     if (!$statement) {
@@ -35,6 +35,7 @@
             $tableTitle = "Benutzer";
             $entity = "user.php";
             include "../../table/table.php";
+            include "../../footer.php";
         ?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>

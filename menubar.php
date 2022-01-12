@@ -1,7 +1,7 @@
 <?php
     require_once "guard.php";
 ?>
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Hotelverwaltung</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,16 +12,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/index.php">
                         Home<img src="/icon/house-fill.svg" class="icon" alt="Home-Icon" />
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/imprint.html">
-                        Impressum<img src="/icon/info-circle-fill.svg" class="icon" alt="Info-Icon" />
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/help.html">
-                        Hilfe<img src="/icon/question-circle-fill.svg" class="icon" alt="Question-Icon" />
                     </a>
                 </li>
                 <?php
