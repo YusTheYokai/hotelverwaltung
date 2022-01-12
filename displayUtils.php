@@ -23,13 +23,13 @@
      * Ändert einen Status Integer zu einem dazu passendem Statement
      */
     function formatTicketStatus($x) {
-        if ($x == 0){
+        if ($x == 0) {
             return "offen";
         }
-        else if ($x == 1){
+        else if ($x == 1) {
             return "erfolgreich geschlossen";
         }
-        else if ($x == 2){
+        else if ($x == 2) {
             return "erfolglos geschlossen";
         }
     }

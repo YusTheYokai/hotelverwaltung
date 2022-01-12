@@ -1,7 +1,6 @@
 <?php
     session_start();
     require "../../db/logIntoDB.php";
-    //require "createTicket.php";
 ?>
 
 <!DOCTYPE html>
@@ -24,10 +23,10 @@
         <h1>Ticket erstellen</h1>
         <form action="createTicket.php" class="text-center" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-                <input id="inputTitle" name="title" type="text" class="input-text form-control" placeholder="Titel" required>
+                <input id="inputTitle" name="title" type="text" class="input-text form-control" placeholder="Titel" minlength="1" maxlength="100" required>
             </div>
             <div class="form-group mt-3">
-                <textarea id="inputContent" name="content" class="input-text form-control" placeholder="Beschreibung" required></textarea>
+                <textarea id="inputContent" name="content" class="input-text form-control" placeholder="Beschreibung" minlength="1" maxlength="2000" required></textarea>
             </div>
             <div class="form-group mt-3">
                 <input id="inputPicture" name="picture" class="input-text form-control" type="file" accept=".jpeg">

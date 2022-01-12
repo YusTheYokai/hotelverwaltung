@@ -163,7 +163,7 @@ a:hover {
 
     z-index: 1;
 
-    color: white;
+    color: aliceblue;
     background: black;
 }
 
@@ -173,7 +173,7 @@ a:hover {
 }
 
 .custom-table th > a {
-    color: white;
+    color: aliceblue;
     cursor: pointer;
 }
 

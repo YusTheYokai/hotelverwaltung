@@ -23,7 +23,9 @@
     </td>
     <td>
         <?php    
-            if ($_SESSION['user']['ROLE'] > 0) {    //TODO: change Post Method to Get Method
+            require_once "guard.php";
+            
+            if (isAdmin($_SESSION["user"])) {    //TODO: change Post Method to Get Method
                 echo   "<form action = 'deleteTicket.php' method = 'post'>
                             <input type='hidden' name='id' value = '$ID'/>
                             <button class='table-icon-button' type='submit' value = 'delete'>
