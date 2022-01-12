@@ -22,16 +22,16 @@
         </div>
     </td>
     <td>
-        <?php    
-            require_once "guard.php";
-            
+        <?php
+            require_once "../../guard.php";
+
             if (isAdmin($_SESSION["user"])) {    //TODO: change Post Method to Get Method
                 echo   "<form action = 'deleteTicket.php' method = 'post'>
                             <input type='hidden' name='id' value = '$ID'/>
                             <button class='table-icon-button' type='submit' value = 'delete'>
                                 <img src='../../../icon/trash-fill.svg' alt='Trash-Icon'/>
                             </button>
-                        </form>";      
+                        </form>";
             }
             //TODO: new Button to look at a singular ticket
         ?>
