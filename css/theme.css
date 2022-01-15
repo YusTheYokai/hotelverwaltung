@@ -211,27 +211,26 @@ a:hover {
     width: 25px;
 }
 
-::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-}
+/* table scrollbar */
 
-/* width */
-::-webkit-scrollbar {
+.custom-table > div::-webkit-scrollbar {
     width: 15px;
 }
 
-/* Track */
-::-webkit-scrollbar-track, ::-webkit-scrollbar-corner {
+ .custom-table > div::-webkit-scrollbar-track, .custom-table > div::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+}
+
+
+.custom-table > div::-webkit-scrollbar-track, .custom-table > div::-webkit-scrollbar-corner {
     background: transparent;
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
+.custom-table > div::-webkit-scrollbar-thumb {
     background: #333;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+.custom-table > div::-webkit-scrollbar-thumb:hover {
     background: #111;
 }
 
