@@ -1,9 +1,9 @@
 <?php
-    // Beim Prüfen wird auf die Session-Variable zugegriffen, dementsprechend muss
-    // die Session vor Aufruf der Funktionen gestartet werden.
+    // Bei Funktionen ohne Übergabeparameter wird auf die Session-Variable zugegriffen,
+    // dementsprechend muss die Session vor Aufruf der Funktionen gestartet werden.
 
     /**
-     * Prüft, ob ein User eingeloggt ist.
+     * Prüft, ob der User eingeloggt ist.
      * @return boolean ob der User eingeloggt ist.
      */
     function isLoggedIn() {
@@ -11,7 +11,7 @@
     }
 
     /**
-     * Prüft, ob ein User Servicetechniker ist.
+     * Prüft, ob der User Servicetechniker ist.
      * @return boolean ob der User Servicetechniker und dementsprechend auch eingeloggt ist.
      */
     function isTechnician() {
@@ -19,15 +19,31 @@
     }
 
     /**
-     * Prüft, ob ein User Admin ist.
-     * @return boolean ob der User Admin und dementsprechend auch eingeloggt ist.
+     * Prüft, ob der übergebene User eingeloggt ist.
+     * @return boolean ob der übergebene User eingeloggt ist.
      */
-    function isAdmin() {
-        return isLoggedIn() && $_SESSION["user"]["ROLE"] === 2;
+    function isUserLoggedIn($user) {
+        return isset($user);
     }
 
     /**
-     * Prüft, ob ein User eingeloggt ist.
+     * Prüft, ob der User Admin ist.
+     * @return boolean ob der User Admin und dementsprechend auch eingeloggt ist.
+     */
+    function isAdmin() {
+        return isLoggedIn() && isUserAdmin($_SESSION["user"]);
+    }
+
+    /**
+     * Prüft, ob der übergebene User Admin ist.
+     * @return boolean ob der übergebene User Admin und dementsprechend auch eingeloggt ist.
+     */
+    function isUserAdmin($user) {
+        return isUserLoggedIn($user) && $user["ROLE"] === 2;
+    }
+
+    /**
+     * Prüft, ob der User eingeloggt ist.
      * Ist dies nicht der Fall wird auf die 401-Error-Seite weitergeleitet.
      */
     function guardLoggedIn() {
@@ -44,20 +60,26 @@
     function guardTechnician() {
         guardLoggedIn();
         if (!isTechnician()) {
-            header("Location: /pages/errorPages/403.php");
-            exit();
+            guard();
         }
     }
 
     /**
-     * Prüft, ob ein User Adminrechte besitzt.
+     * Prüft, ob der User Adminrechte besitzt.
      * Ist dies nicht der Fall wird auf die 403-Error-Seite weitergeleitet.
      */
     function guardAdmin() {
         guardLoggedIn();
         if (!isAdmin()) {
-            header("Location: /pages/errorPages/403.php");
-            exit();
+            guard();
         }
+    }
+
+    /**
+     * Leitet auf die 403-Error-Seite weiter.
+     */
+    function guard() {
+        header("Location: /pages/errorPages/403.php");
+        exit();
     }
 ?>
