@@ -14,6 +14,11 @@
                         Home<img src="/icon/house-fill.svg" class="icon" alt="Home-Icon" />
                     </a>
                 </li>
+                <?php
+                    if (isLoggedIn()) {
+                        require "menubar/guestMenubarLinks.php";
+                    }
+                ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/imprint.html">
                         Impressum<img src="/icon/info-circle-fill.svg" class="icon" alt="Info-Icon" />

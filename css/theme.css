@@ -96,6 +96,20 @@ a:hover {
     text-decoration: underline;
 }
 
+.dropdown-item {
+    color: aliceblue;
+}
+
+.dropdown-item:hover {
+    color: aliceblue;
+    text-decoration: underline;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
 /* toast-container */
 .toast-container {
     margin-top: 56px;
@@ -157,7 +171,9 @@ a:hover {
 .custom-table thead {
     top: 0vh;
 
-    color: white;
+    z-index: 1;
+
+    color: aliceblue;
     background: black;
 }
 
@@ -167,7 +183,7 @@ a:hover {
 }
 
 .custom-table th > a {
-    color: white;
+    color: aliceblue;
     cursor: pointer;
 }
 
@@ -179,6 +195,11 @@ a:hover {
 .custom-table td:last-child {
     width: 1%;
     text-align: center;
+}
+
+.table-icon-button {
+    background: none;
+    border: none;
 }
 
 .table-icon-button:hover {
