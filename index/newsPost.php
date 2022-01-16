@@ -17,7 +17,14 @@
         <div class="col-lg-8" style="position: relative;">
             <h1><?=$title?></h1>
             <p class="news-post-text"><?=$content?></p>
-            <p class="author-date"><?=formatName($firstName, $lastName)?> - <?=formatTimestamp($creationTime)?></p>
+            <div class="news-post-footer">
+                <p class="author-date"><?=formatName($firstName, $lastName)?> - <?=formatTimestamp($creationTime)?></p>
+                <?php
+                    if (isAdmin()) {
+                        require "deleteNewsPostButton.php";
+                    }
+                ?>
+            </div>
         </div>
     </div>
 </div>

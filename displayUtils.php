@@ -16,7 +16,7 @@
      */
     function formatTimestamp($timestamp) {
         setlocale(LC_ALL, "de-AT");
-        return strftime("%A, %d. %B %Y, %H:%M Uhr", strtotime($timestamp));
+        return strftime("%d.%m.%Y, %H:%M Uhr", strtotime($timestamp));
     }
 
     /**

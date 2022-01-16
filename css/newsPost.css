@@ -10,14 +10,21 @@
 
 .news-post-text {
     text-align: justify;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
 }
 
-.author-date {
-    font-size: 12px;
+.news-post-footer {
+    display: flex;
+    justify-content: space-between;
+
     position: absolute;
+    width: calc(100% - 25px);
     bottom: 0;
-    right: 15px;
-    margin-bottom: 0;
+
+    font-size: 14px;
     font-style: italic;
+}
+
+.news-post-footer > p {
+    margin-bottom: 0;
 }
