@@ -13,9 +13,15 @@
         }
     }
 
+    $filter = "%";
+    if (isset($_GET["filter"]) && !empty($_GET["filter"])) {
+        $filter = "%" . htmlspecialchars_decode($_GET["filter"]) . "%";
+    }
+
     // Laden aller News-Posts aus der Datenbank.
-    $selectAllQuery = "SELECT TITLE, CONTENT, PICTURE, CREATION_TIME, FIRST_NAME, LAST_NAME, USERNAME FROM news_post JOIN user ON (news_post.USER_ID = user.ID) ORDER BY CREATION_TIME DESC;";
+    $selectAllQuery = "SELECT TITLE, CONTENT, PICTURE, CREATION_TIME, FIRST_NAME, LAST_NAME, USERNAME FROM news_post JOIN user ON (news_post.USER_ID = user.ID) WHERE TITLE LIKE ? OR CONTENT LIKE ? ORDER BY CREATION_TIME DESC;";
     $selectAllStatement = $db->prepare($selectAllQuery);
+    $selectAllStatement->bind_param("ss", $filter, $filter);
     $selectAllStatement->execute();
     $selectAllStatement->bind_result($title, $content, $picture, $creationTime, $firstName, $lastName, $username);
 ?>
@@ -35,11 +41,28 @@
         <?php
             include "menubar.php";
             if (isAdmin()) {
-                include "index/createNewsPostButton.php";
                 include "index/newsPostDialog.php";
             }
         ?>
-        <div class="footer-margin-bottom" style="margin-top: <?=isAdmin() ? '20' : '80'?>px;">
+        <div id="actions" class="position-sticky">
+            <?php
+                if (isAdmin()) {
+                    include "index/createNewsPostButton.php";
+                }
+            ?>
+            <div>
+                <input type="text" id="filterInput" class="input-text form-control hidden" placeholder="Filter" />
+                <button id="filterButton" class="table-icon-button">
+                    <img src="/icon/search.svg" alt="Such-Icon" title="Filtern" />
+                </button>
+                <?php
+                    if (isset($_GET["filter"])) {
+                        include "index/resetFilterButton.php";
+                    }
+                ?>
+            </div>
+        </div>
+        <div style="margin-top: 20px;">
             <?php
                 while ($selectAllStatement->fetch()) {
                     include "entities/newsPost.php";
@@ -50,5 +73,43 @@
             include "footer.php";
         ?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+        <script>
+            let filterButton = document.getElementById("filterButton");
+            let filterInput =  document.getElementById("filterInput");
+
+            // Dem Filterbutton einen Klick-Listener hinzufügen, damit das Eingabefeld angezeigt wird
+            filterButton.addEventListener("click", showInput);
+            // Dem Eingabefeld für das Filtern einen Listener für das keypress Event hinzufügen.
+            filterInput.addEventListener("keypress", filterOnEnter);
+
+            function showInput(e) {
+                filterButton.classList.add("inputShown")
+                // Den Listener für das Anzeigen des Eingabefeldes entfernen.
+                filterButton.removeEventListener("click", showInput);
+                // Den Listener für das Filtern hinzufügen.
+                filterButton.addEventListener("click", filter);
+
+                filterInput.classList.remove("hidden");
+                filterInput.focus();
+            }
+
+            /**
+             * Setzt den URL-Parameter filter, wenn Enter gedrückt wurde.
+             */
+            function filterOnEnter(e) {
+                // 13 = Enter
+                if (e.keyCode === 13) {
+                    filter();
+                }
+            }
+
+            /**
+             * URL-Parameter mit dem Eingabetext setzen
+             */
+            function filter() {
+                location.href = "?filter=" + filterInput.value;
+            }
+        </script>
     </body>
 </html>
