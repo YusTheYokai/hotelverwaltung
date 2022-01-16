@@ -1,4 +1,4 @@
-<div class="container-fluid overlay quarter-width" style="margin-top: 5vh;">
+<div class="container-fluid overlay quarter-width footer-margin-bottom" style="margin-top: 5vh;">
     <h1>Passwort ändern</h1>
     <form class="text-center" method="POST" action="changePassword.php">
         <div class="form-group">

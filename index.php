@@ -1,7 +1,7 @@
 <?php
     session_start();
-    require "db/logIntoDB.php";
-    require "guard.php";
+    require_once "db/logIntoDB.php";
+    require_once "guard.php";
 
     // Wenn der logout-Parameter geschickt wird soll überprüft werden,
     // ob dieser true ist. Ist dies der Fall wird der User ausgeloggt.
@@ -32,20 +32,23 @@
         <link href="/css/newsPost.css" rel="stylesheet">
     </head>
     <body>
-        <?php include "menubar.php";?>
         <?php
+            include "menubar.php";
             if (isAdmin()) {
                 include "index/createNewsPostButton.php";
                 include "index/newsPostDialog.php";
             }
         ?>
-        <div style="margin-top: <?=isAdmin() ? '20' : '80'?>px;">
+        <div class="footer-margin-bottom" style="margin-top: <?=isAdmin() ? '20' : '80'?>px;">
             <?php
                 while ($selectAllStatement->fetch()) {
                     include "entities/newsPost.php";
                 }
             ?>
         </div>
+        <?php
+            include "footer.php";
+        ?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>
 </html>
