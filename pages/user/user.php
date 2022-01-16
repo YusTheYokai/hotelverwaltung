@@ -19,13 +19,14 @@
     if (!empty($sortBy) && !empty($order)) {
         $setActiveUrl .= "&sortBy=$sortBy&order=$order";
     }
-
 ?>
 <tr <?php $username === "nlerchl" ? "\"id='test'\"" : '' ?> <?=$trClass?>>
-    <td><?=$honorific?></td>
+    <td><?=formatHonorific($honorific);?></td>
     <td><?=$lastName?></td>
     <td><?=$firstName?></td>
     <td><?=$username?></td>
+    <td><?=$email?></td>
+    <td><?=formatRole($role)?></td>
     <td><?=$lang[$active ? "'yes'" : "'no'"]?></td>
     <td>
         <a href="<?=$setActiveUrl?>" class="table-icon-button" title="<?=$title?>">

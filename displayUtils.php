@@ -1,4 +1,22 @@
-<?php 
+<?php
+    /**
+     * Formartiert eine Anrede von der Integer-Darstellung
+     * zur Textdarstellung.
+     * @param int $honorific Anrede
+     * @return string formartierte Anrede
+     */
+    function formatHonorific($honorific) {
+        if ($honorific === 0) {
+            return "Herr";
+        } else if ($honorific === 1) {
+            return "Frau";
+        } else if ($honorific === 2) {
+            return "Divers";
+        } else {
+            return "???";
+        }
+    }
+
     /**
      * Formartiert einen Namen. Beispiel: "Nachname, Vorname"
      * @param string $firstName Vorname
@@ -7,6 +25,24 @@
      */
     function formatName($firstName, $lastName) {
         return $lastName . ", " . $firstName;
+    }
+
+    /**
+     * Formartiert eine Rolle von der Integer-Darstellung
+     * zur Textdarstellung.
+     * @param int $role Rolle
+     * @return string formartierte Rolle
+     */
+    function formatRole($role) {
+        if ($role === 0) {
+            return "Gast";
+        } else if ($role === 1) {
+            return "Servicetechniker*in";
+        } else if ($role === 2) {
+            return "Admin";
+        } else {
+            return "???";
+        }
     }
 
     /**
