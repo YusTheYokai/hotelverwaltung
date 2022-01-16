@@ -18,4 +18,19 @@
         setlocale(LC_ALL, "de-AT");
         return strftime("%A, %d. %B %Y, %H:%M Uhr", strtotime($timestamp));
     }
+
+    /**
+     * Ändert einen Status Integer zu einem dazu passendem Statement
+     */
+    function formatTicketStatus($x) {
+        if ($x == 0) {
+            return "offen";
+        }
+        else if ($x == 1) {
+            return "erfolgreich geschlossen";
+        }
+        else if ($x == 2) {
+            return "erfolglos geschlossen";
+        }
+    }
 ?>

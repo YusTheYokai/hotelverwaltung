@@ -12,8 +12,8 @@
         $username = $_POST["username"];
         $password = $_POST["password"];
         if (isset($username) && isset($password)) {
-            $user = getUserPassword($db, $username);
-            if (!empty($user) && sha1($password) == $user["PASSWORD"]) {
+            $user = getUser($db, $username);
+            if (!empty($user) && sha1($password) == $user["PASSWORD"] && $user["ACTIVE"]) {
                 createFolderIfAbsent($username);
                 $_SESSION["user"] = $user;
                 header("Location: ../index.php");
@@ -23,7 +23,6 @@
         }
     }
 
-    // TODO: Name der Funktion passt nicht ganz so
     /**
      * Gibt das Ergebnis der Suche nach dem Password des übergebenen Usernames zurück.
      * @param mysqli $db Datenbankverbindung
@@ -32,7 +31,7 @@
      * Gibt das Datenbankergebnis, welches leer ist, falls es keinen User mit dem Username gibt, zurück.
      * Gibt es den User kann mit ["PASSWORD"] auf das gehashte Passwort zugegriffen werden.
      */
-    function getUserPassword($db, $username) {
+    function getUser($db, $username) {
         $query = "SELECT * FROM USER WHERE USERNAME LIKE ?";
         $statement = $db->prepare($query);
         $statement->bind_param("s", $username);

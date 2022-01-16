@@ -15,6 +15,9 @@
                     </a>
                 </li>
                 <?php
+                    if (isLoggedIn()) {
+                        require "menubar/guestMenubarLinks.php";
+                    }
                     if (isAdmin()) {
                         require "menubar/adminMenubarLinks.php";
                     }

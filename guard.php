@@ -11,6 +11,14 @@
     }
 
     /**
+     * Prüft, ob der User Servicetechniker ist.
+     * @return boolean ob der User Servicetechniker und dementsprechend auch eingeloggt ist.
+     */
+    function isTechnician() {
+        return isLoggedIn() && $_SESSION["user"]["ROLE"] >= 1;
+    }
+
+    /**
      * Prüft, ob der übergebene User eingeloggt ist.
      * @return boolean ob der übergebene User eingeloggt ist.
      */
@@ -42,6 +50,17 @@
         if (!isLoggedIn()) {
             header("Location: /pages/errorPages/401.php");
             exit();
+        }
+    }
+
+    /**
+     * Prüft, ob ein User Servicetechniker-Rechte besitzt.
+     * Ist dies nicht der Fall wird auf die 403-Error-Seite weitergeleitet.
+     */
+    function guardTechnician() {
+        guardLoggedIn();
+        if (!isTechnician()) {
+            guard();
         }
     }
 

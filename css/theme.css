@@ -104,6 +104,20 @@ a:hover {
     text-decoration: underline;
 }
 
+.dropdown-item {
+    color: aliceblue;
+}
+
+.dropdown-item:hover {
+    color: aliceblue;
+    text-decoration: underline;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
 /* toast-container */
 .toast-container {
     margin-top: 56px;
@@ -167,7 +181,9 @@ a:hover {
 .custom-table thead {
     top: 0vh;
 
-    color: white;
+    z-index: 1;
+
+    color: aliceblue;
     background: black;
 }
 
@@ -177,7 +193,7 @@ a:hover {
 }
 
 .custom-table th > a {
-    color: white;
+    color: aliceblue;
     cursor: pointer;
 }
 
@@ -191,6 +207,11 @@ a:hover {
     text-align: center;
 }
 
+.table-icon-button {
+    background: none;
+    border: none;
+}
+
 .table-icon-button:hover {
     filter: invert(100%) sepia(3%) saturate(91%) hue-rotate(11deg) brightness(116%) contrast(100%);
     text-decoration: none;
@@ -200,27 +221,26 @@ a:hover {
     width: 25px;
 }
 
-::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-}
+/* table scrollbar */
 
-/* width */
-::-webkit-scrollbar {
+.custom-table > div::-webkit-scrollbar {
     width: 15px;
 }
 
-/* Track */
-::-webkit-scrollbar-track, ::-webkit-scrollbar-corner {
+ .custom-table > div::-webkit-scrollbar-track, .custom-table > div::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+}
+
+
+.custom-table > div::-webkit-scrollbar-track, .custom-table > div::-webkit-scrollbar-corner {
     background: transparent;
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
+.custom-table > div::-webkit-scrollbar-thumb {
     background: #333;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+.custom-table > div::-webkit-scrollbar-thumb:hover {
     background: #111;
 }
 
