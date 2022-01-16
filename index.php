@@ -19,11 +19,11 @@
     }
 
     // Laden aller News-Posts aus der Datenbank.
-    $selectAllQuery = "SELECT TITLE, CONTENT, PICTURE, CREATION_TIME, FIRST_NAME, LAST_NAME, USERNAME FROM news_post JOIN user ON (news_post.USER_ID = user.ID) WHERE TITLE LIKE ? OR CONTENT LIKE ? ORDER BY CREATION_TIME DESC;";
+    $selectAllQuery = "SELECT news_post.ID, TITLE, CONTENT, PICTURE, CREATION_TIME, FIRST_NAME, LAST_NAME, USERNAME FROM news_post JOIN user ON (news_post.USER_ID = user.ID) WHERE TITLE LIKE ? OR CONTENT LIKE ? ORDER BY CREATION_TIME DESC;";
     $selectAllStatement = $db->prepare($selectAllQuery);
     $selectAllStatement->bind_param("ss", $filter, $filter);
     $selectAllStatement->execute();
-    $selectAllStatement->bind_result($title, $content, $picture, $creationTime, $firstName, $lastName, $username);
+    $selectAllStatement->bind_result($id, $title, $content, $picture, $creationTime, $firstName, $lastName, $username);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,14 +65,16 @@
         <div style="margin-top: 20px;">
             <?php
                 while ($selectAllStatement->fetch()) {
-                    include "entities/newsPost.php";
+                    include "index/newsPost.php";
                 }
             ?>
         </div>
         <?php
             include "footer.php";
+            include "util/toast/toastManager.php";
         ?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <?php include "util/toast/toastManagerScript.php";?>
 
         <script>
             let filterButton = document.getElementById("filterButton");
