@@ -1,7 +1,7 @@
 <?php
-    require_once "../../translator.php";
+    require_once "/xampp/htdocs/translator.php";
 
-    echo "<div class=\"toast-container position-fixed top-0 end-0 p-3\">";
+    echo "<div class=\"toast-container position-fixed top-0 end-0 p-3\" style='z-index: 2;'>";
     $counter = 0;
     while (toastParamExists($counter)) {
         $id = $counter;
