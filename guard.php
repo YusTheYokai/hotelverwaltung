@@ -11,6 +11,14 @@
     }
 
     /**
+     * Prüft, ob ein User Gast ist.
+     * @return boolean ob der User Gast und dementsprechend auch eingeloggt ist.
+     */
+    function isGuest() {
+        return isLoggedIn() && $_SESSION["user"]["ROLE"] === 0;
+    }
+
+    /**
      * Prüft, ob ein User Servicetechniker ist.
      * @return boolean ob der User Servicetechniker und dementsprechend auch eingeloggt ist.
      */
@@ -59,5 +67,13 @@
             header("Location: /pages/errorPages/403.php");
             exit();
         }
+    }
+
+    /**
+     * Leitet auf die 403-Error-Seite weiter.
+     */
+    function guard() {
+        header("Location: /pages/errorPages/403.php");
+        exit();
     }
 ?>
