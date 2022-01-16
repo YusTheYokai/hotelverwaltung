@@ -164,7 +164,7 @@ a:hover {
 
 .custom-table > div {
     overflow-x: auto;
-    height: 70vh;
+    height: 65vh;
 
     background-color: var(--overlay-background-color);
     border: 3px black solid;

@@ -62,7 +62,7 @@
                 ?>
             </div>
         </div>
-        <div style="margin-top: 20px;">
+        <div class="footer-margin-bottom" style="margin-top: 20px;">
             <?php
                 while ($selectAllStatement->fetch()) {
                     include "index/newsPost.php";
