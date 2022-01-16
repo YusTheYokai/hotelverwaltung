@@ -1,11 +1,11 @@
 <?php
     session_start();
     if (isset($_SESSION["user"])) {
-        header("Location: ../index.php");
+        header("Location: ../../index.php");
         exit;
     }
 
-    require_once "../db/logIntoDB.php";
+    require_once "../../db/logIntoDB.php";
 
     $validationFailed = FALSE;
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -16,7 +16,7 @@
             if (!empty($user) && sha1($password) == $user["PASSWORD"] && $user["ACTIVE"]) {
                 createFolderIfAbsent($username);
                 $_SESSION["user"] = $user;
-                header("Location: ../index.php");
+                header("Location: ../../index.php");
             } else {
                 $validationFailed = TRUE;
             }
@@ -40,7 +40,7 @@
     }
 
     function createFolderIfAbsent($username) {
-        $path = "../uploads/" . $username;
+        $path = "../../uploads/" . $username;
         if (!is_dir($path)) {
             $success = mkdir($path, 0777);
             if ($success) {
@@ -65,7 +65,7 @@
     </head>
     <body>
         <?php
-            include "../menubar.php";
+            include "../../menubar.php";
         ?>
         <!-- Login -->
         <div id="loginContainer" class="container-fluid overlay quarter-width">
@@ -82,7 +82,6 @@
                         echo "<p id='wrongCredentials'>Benutzername oder Passwort falsch.</p>";
                     }
                 ?>
-                <p id="notRegistered"><a href="registration.php">Sie sind noch nicht registiert?</a></p>
                 <button type="submit" class="btn btn-primary mt-4">Login</button>
             </form>
         </div>
