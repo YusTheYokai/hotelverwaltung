@@ -20,11 +20,11 @@ h1 {
 }
 
 /* navbar */
-.navbar {
+.navbar, .footer {
     background-color: black !important;
 }
 
-.navbar a {
+.navbar a, .footer a {
     color: white !important;
 }
 
@@ -39,6 +39,14 @@ h1 {
 
 .dropdown-item:hover, .dropdown-item:focus {
     background-color: #111111;
+}
+
+.footer, .footer > div {
+    height: 56px;
+}
+
+.footer a {
+    margin: auto 0;
 }
 
 /* button & input-text */
@@ -125,6 +133,8 @@ a:hover {
     filter: invert(100%) sepia(3%) saturate(91%) hue-rotate(11deg) brightness(116%) contrast(100%);
 }
 
+/* overlay */
+
 .overlay, .dialog-overlay {
     padding: 20px;
     border-radius: 10px;
@@ -154,7 +164,7 @@ a:hover {
 
 .custom-table > div {
     overflow-x: auto;
-    height: 75vh;
+    height: 70vh;
 
     background-color: var(--overlay-background-color);
     border: 3px black solid;
@@ -237,4 +247,8 @@ a:hover {
 .quarter-width {
     width: 25%;
     min-width: 300px;
+}
+
+.footer-margin-bottom {
+    margin-bottom: 70px;
 }
