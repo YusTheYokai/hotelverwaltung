@@ -10,7 +10,7 @@
         exit;
     }
 
-    $ticketQuery = "SELECT TITLE, CONTENT, PICTURE, STATUS, CREATION_TIME, FIRST_NAME, LAST_NAME, USERNAME FROM ticket JOIN user ON (ticket.USER_ID = ticket.ID) WHERE ticket.ID = ?;";
+    $ticketQuery = "SELECT TITLE, CONTENT, PICTURE, STATUS, CREATION_TIME, FIRST_NAME, LAST_NAME, USERNAME FROM ticket JOIN user ON (ticket.USER_ID = user.ID) WHERE ticket.ID = ?;";
     $ticketStatement = $db->prepare($ticketQuery);
     $ticketStatement->bind_param("i", $_GET["id"]);
     $ticketStatement->execute();
