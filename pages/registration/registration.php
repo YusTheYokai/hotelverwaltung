@@ -1,69 +1,65 @@
 <?php
     require "../../guard.php";
     session_start();
-
-    guardAdmin($_SESSION["user"]);
-
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        include("logIntoDB.php");
-        $username = $_POST["username"];
-        $honorific = $_POST["honorific"];
-        $firstName = $_POST["firstName"];
-        $lastName = $_POST["lastName"];
-        $email = $_POST["email"];
-        $password = sha1($_POST["password"]);
-        $query = "INSERT INTO USER (HONORIFIC, FIRST_NAME, LAST_NAME, EMAIL, USERNAME, PASSWORD) VALUES (?, ?, ?, ?, ?, ?);";
-        $statement = $db->prepare($query);
-        $statement->bind_param("ssssss", $honorific, $firstName, $lastName, $email, $username, $password);
-        $statement->execute();
-    }
+    guardAdmin();
 ?>
 <!DOCTYPE html>
 <html lang="de">
     <head>
-        <title>Registrierung</title>
+        <title>Hotelverwaltung - Nutzerregistrierung</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="/css/theme.css" rel="stylesheet">
-        <link href="/css/base.css" rel="stylesheet">
         <link href="/css/entry.css" rel="stylesheet">
     </head>
     <body>
         <?php
-            $lang = parse_ini_file("lang/de.ini", TRUE)['registration'];
-            include "../menubar.php";
+            $lang = parse_ini_file("../../lang/de.ini", TRUE);
+            include "../../menubar.php";
         ?>
 
         <div id="registrationContainer" class="container-fluid overlay quarter-width">
-            <h1>Registrierung</h1>
-            <form class="text-center" method="POST"> <!-- action="registrationController.php" -->
+            <h1>Nutzerregistrierung</h1>
+            <form class="text-center" method="POST" action="registerUser.php">
                 <div class="form-group">
-                    <input type="text" id="username" name="username" class="input-text form-control" required maxlength="20" placeholder="<?=$lang["username"]?>" />
+                    <input type="text" id="username" name="USERNAME" class="input-text form-control" required minlength="3" maxlength="20" placeholder="<?=$lang["USERNAME"]?>" />
                 </div>
                 <div class="form-group mt-3">
-                    <select id="honorific" name="honorific" class="input-text form-control" required>
-                        <option value selected disabled>Anrede</option>
-                        <option value="male">Herr</option>
-                        <option value="female">Frau</option>
-                        <option value="other">Divers</option>
+                    <select id="honorific" name="HONORIFIC" class="input-text form-control" required>
+                        <option value selected disabled><?=$lang["HONORIFIC"]?></option>
+                        <option value="0">Herr</option>
+                        <option value="1">Frau</option>
+                        <option value="2">Divers</option>
                     </select>
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" id="firstName" name="firstName" class="input-text form-control" required maxlength="30" placeholder="<?=$lang["firstName"]?>" />
+                    <input type="text" id="lastName" name="LAST_NAME" class="input-text form-control" required minlength="2" maxlength="30" placeholder="<?=$lang["LAST_NAME"]?>" /> 
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" id="lastName" name="lastName" class="input-text form-control" required maxlength="30" placeholder="<?=$lang["lastName"]?>" /> 
+                    <input type="text" id="firstName" name="FIRST_NAME" class="input-text form-control" required minlength="2" maxlength="30" placeholder="<?=$lang["FIRST_NAME"]?>" />
                 </div>
                 <div class="form-group mt-3">
-                    <input type="email" id="email" name="email" class="input-text form-control" required maxlength="50" placeholder=<?=$lang["email"]?> />
+                    <input type="email" id="email" name="EMAIL" class="input-text form-control" required minlength="5" maxlength="50" placeholder=<?=$lang["EMAIL"]?> />
                 </div>
                 <div class="form-group mt-3">
-                    <input type="password" id="password" name="password" class="input-text form-control" required maxlength="50" placeholder=<?=$lang["password"]?> />
+                    <input type="password" id="password" name="PASSWORD" class="input-text form-control" required minlength="8" maxlength="50" placeholder=<?=$lang["PASSWORD"]?> />
+                </div>
+                <div class="form-group btn-group mt-3" style="display: flex;">
+                    <input type="radio" id="guestRadioButton" name="ROLE" class="btn-check" value="0" autocomplete="off" checked>
+                    <label class="btn btn-primary" style="width: 50%;" for="guestRadioButton">Gast</label>
+
+                    <input type="radio" id="technicianRadionButton" name="ROLE" class="btn-check" value="1" autocomplete="off">
+                    <label class="btn btn-primary" style="width: 50%;" for="technicianRadionButton">Servicetechniker*in</label>
                 </div>
                 <button type="submit" class="btn btn-primary mt-4">Registrieren</button>
             </form>
         </div>
+        <?php
+            include "../../footer.php";
+            include "../../util/toast/toastManager.php";
+        ?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <?php include "../../util/toast/toastManagerScript.php";?>
     </body>
 </html>
 

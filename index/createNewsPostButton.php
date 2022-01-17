@@ -1,7 +1,8 @@
 <button id="addNewsPostButton"
-                type="button"
-                class="btn btn-primary position-sticky"
-                data-bs-toggle="modal"
-                data-bs-target="#newsPostDialog">
-    Neuen News-Post erstellen
+        type="button"
+        class="table-icon-button"
+        title="Neuen News-Post erstellen"
+        data-bs-toggle="modal"
+        data-bs-target="#newsPostDialog">
+    <img src="/icon/plus-circle-fill.svg" alt="Plus-Icon" title="Neuen News-Post erstellen" />
 </button>

@@ -1,7 +1,49 @@
-#addNewsPostButton {
-    top: 10vh;
-    margin-top: 10vh;
-    left: 50%;
-    transform: translateX(-50%);
+#actions {
+    display: inline-flex;
+    justify-content: space-evenly;
+    width: 100%;
+    top: 80px;
+    margin-top: 80px;
     z-index: 1;
+}
+
+#actions > div {
+    display: flex;
+}
+
+#filterInput {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+            transition: opacity 0.5s ease-in-out, box-shadow .15s ease-in-out;
+         -o-transition: opacity 0.5s ease-in-out, box-shadow .15s ease-in-out;
+        -ms-transition: opacity 0.5s ease-in-out, box-shadow .15s ease-in-out;
+    -webkit-transition: opacity 0.5s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+#filterButton {
+            transition: background-color 0.5s ease-in-out, border 0.5s ease-in-out;
+         -o-transition: background-color 0.5s ease-in-out, border 0.5s ease-in-out;
+        -ms-transition: background-color 0.5s ease-in-out, border 0.5s ease-in-out;
+    -webkit-transition: background-color 0.5s ease-in-out, border 0.5s ease-in-out;
+}
+
+.inputShown {
+    background-color: var(--primary) !important;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    border-left: 1px solid gray;
+}
+
+.inputShown:hover {
+    filter: none;
+    box-shadow: 3px 3px 9px 3px rgba(128, 128, 128, 0.5) !important;
+}
+
+.inputShown > img {
+    filter: invert(100%) sepia(3%) saturate(91%) hue-rotate(11deg) brightness(116%) contrast(100%);
 }

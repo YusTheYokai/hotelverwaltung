@@ -10,22 +10,18 @@
     <td><?=formatTimestamp($CREATION_TIME)?></td>
     <td>
         <?php include "ticketStatusButton.php"; ?> </td> 
-    <td> 
-        <a 
-            href="ticketDetails.php?id=<?=$ID?>" class='table-icon-button'> 
-                <img src='../../../icon/box-arrow-up-right.svg' alt='Open-Icon'/> 
+    <td>
+        <a href="ticketDetails.php?id=<?=$ID?>" class='table-icon-button'>
+            <img src='../../../icon/box-arrow-up-right.svg' alt='Open-Icon'/>
         </a>
-
-        <?php    
-            require_once "../../guard.php";
-            
+        <?php
             if (isAdmin($_SESSION["user"])) {    //TODO: change Post Method to Get Method
                 echo   "<form action = 'deleteTicket.php' method = 'post'>
                             <input type='hidden' name='id' value = '$ID'/>
                             <button class='table-icon-button' type='submit' value = 'delete'>
                                 <img src='../../../icon/trash-fill.svg' alt='Trash-Icon'/>
                             </button>
-                        </form>";      
+                        </form>";
             }
         ?>
     </td>

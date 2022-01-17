@@ -1,4 +1,4 @@
-<div class="container-fluid overlay custom-table">
+<div class="container-fluid overlay custom-table footer-margin-bottom">
     <h1 id="tableTitle"><?=$tableTitle?></h1>
     <div class="table-responsive-lg">
         <table class="table" aria-describedby="tableTitle">

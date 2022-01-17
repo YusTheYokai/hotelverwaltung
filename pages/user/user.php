@@ -14,8 +14,8 @@
         $trClass = "class='overlay'";
     }
 
-    $newActiveState = !$active;
-    $setActiveUrl = "/pages/user/setActive.php?id=$id&active=$newActiveState";
+    $newActiveState = $active ? 0 : 1;
+    $setActiveUrl = "/pages/user/setActive.php?userId=$id&active=$newActiveState";
     if (!empty($sortBy) && !empty($order)) {
         $setActiveUrl .= "&sortBy=$sortBy&order=$order";
     }
@@ -31,7 +31,7 @@
         <a href="<?=$setActiveUrl?>" class="table-icon-button" title="<?=$title?>">
             <img src="<?=$icon?>" alt="<?=$alt?>" />
         </a>
-        <a title="Stammdaten ändern" class="table-icon-button">
+        <a href="../profile/profile.php?userId=<?=$id?>" class="table-icon-button" title="Profil bearbeiten">
             <img src="../../icon/person-circle.svg" alt="User Icon" />
         </a>
     </td>

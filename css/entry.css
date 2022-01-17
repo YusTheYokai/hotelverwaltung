@@ -6,12 +6,6 @@
     margin-top: 10vh;
 }
 
-#notRegistered, #alreadyRegistered {
-    text-align: left !important;
-    font-style: italic;
-    margin-top: 5px;
-}
-
 #wrongCredentials {
     margin-top: 7px;
     margin-bottom: 0;
