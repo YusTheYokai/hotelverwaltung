@@ -1,14 +1,17 @@
 <?php
+    session_start();
+
     require_once "../../db/logIntoDB.php";
     require_once "../../guard.php";
     require_once "../../translator.php";
+    require_once "../../displayUtils.php";
 
-    session_start();
     guardAdmin();
 
-    $columns = "ID,HONORIFIC,LAST_NAME,FIRST_NAME,USERNAME,ACTIVE";
+    $columns = "ID,HONORIFIC,LAST_NAME,FIRST_NAME,USERNAME,EMAIL,ROLE,ACTIVE";
+    $ignoreColumns = "";
     $query = "SELECT $columns FROM user";
-   
+
     require_once "../../table/tableLogic.php";
 
     $statement = $db->prepare($query);
@@ -16,7 +19,7 @@
         error_log($db->error);
     }
     $statement->execute();
-    $statement->bind_result($id, $honorific, $firstName, $lastName, $username, $active);
+    $statement->bind_result($id, $honorific, $firstName, $lastName, $username, $email, $role, $active);
 ?>
 <!DOCTYPE html>
     <html lang="en">
