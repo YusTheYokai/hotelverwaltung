@@ -1,8 +1,8 @@
 <?php
     session_start();
-    require "../../db/logintoDB.php";
-    require "../../displayUtils.php";
-    require "../../translator.php";
+    require_once "../../db/logintoDB.php";
+    require_once "../../displayUtils.php";
+    require_once "../../translator.php";
 
     $columns = "ticket.ID,TITLE,PICTURE,CONTENT,LAST_NAME,FIRST_NAME,CREATION_TIME,STATUS,USERNAME";
     $ignoreColumns = "USERNAME";
@@ -42,9 +42,7 @@
             $tableTitle = "Tickets";
             $entity = "ticket.php";
             include "../../table/table.php";
-
-            include "../../footer.php";
+            require_once "../../util/bottomIncludes.php";
         ?>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>
 </html>

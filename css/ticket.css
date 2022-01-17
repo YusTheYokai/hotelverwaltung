@@ -1,7 +1,30 @@
-#createTicketContainer {
-    margin-top: 20vh;
+#ticketDetailsContainer, #createCommentContainer, #commentContainer {
+    width: 90vw;
 }
 
-#dropdown-menu {
-    color: aliceblue;
+#ticketDetailsContainer {
+    margin-top: 10vh;
+}
+
+#titleContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+#createCommentContainer {
+    margin-top: 5vh;
+}
+
+#commentsContainer {
+    margin-top: 2vh;
+}
+
+#commentContainer {
+    margin-top: 1vh;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
 }

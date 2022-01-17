@@ -11,7 +11,14 @@
     }
 
     /**
-     * Prüft, ob der User Servicetechniker ist.
+     * Prüft, ob der User Gast ist.
+     * @return boolean ob der User Gast und dementsprechend auch eingeloggt ist.
+     */
+    function isGuest() {
+        return isLoggedIn() && $_SESSION["user"]["ROLE"] === 0;
+    }
+
+    /** Prüft, ob der User Servicetechniker ist.
      * @return boolean ob der User Servicetechniker und dementsprechend auch eingeloggt ist.
      */
     function isTechnician() {

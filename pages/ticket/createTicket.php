@@ -8,6 +8,7 @@
     if (!$addStatement) {
         error_log($db->error);
     }
-    $test = $addStatement->bind_param("sssi", $_POST["title"], $_POST["content"], $fileName, $_SESSION["user"]["ID"]);
+    $addStatement->bind_param("sssi", $_POST["title"], $_POST["content"], $fileName, $_SESSION["user"]["ID"]);
+    $addStatement->execute();
     header("Location: createTicketController.php");
 ?>
