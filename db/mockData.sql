@@ -37,12 +37,12 @@ INSERT INTO USER (ID, HONORIFIC, FIRST_NAME, LAST_NAME, EMAIL, USERNAME, PASSWOR
 INSERT INTO USER (ID, HONORIFIC, FIRST_NAME, LAST_NAME, EMAIL, USERNAME, PASSWORD, ROLE)
 --                                                                               "Probepasswort7"
 --                                                                                   v
-        VALUES(15, 0, "Nico", "Lerchl", "nico@lerchl.com", "Nico", "41d50ab5708de02173f060fc48d42fe7f3dc04ca", 1);
+        VALUES(15, 0, "Nico", "Lerchl", "nico@lerchl.com", "Nico", "e6656875c0a5dd749b1a677242dc0b3d802448e9", 1);
 
 INSERT INTO USER (ID, HONORIFIC, FIRST_NAME, LAST_NAME, EMAIL, USERNAME, PASSWORD, ROLE)
 --                                                                               "Probepasswort8"
 --                                                                                   v
-        VALUES(23, 0, "Janko", "Hu", "janko@hu.com", "Janko", "da61fbb86c89ffc2392eddb96605fbe22a2bad11", 1);
+        VALUES(23, 0, "Janko", "Hu", "janko@hu.com", "Janko", "b90b8b91c18a298ec44d8330215aaa892df9c1c6", 1);
 
 
 
@@ -114,4 +114,4 @@ INSERT INTO comment (CONTENT, CREATION_TIME, USER_ID, TICKET_ID)
 
 INSERT INTO comment (CONTENT, CREATION_TIME, USER_ID, TICKET_ID)
 
-        VALUES ("Wir entschuldigen uns sehr für Ihre Unannehmlichkeiten, unser eigener Hausarzt kann sich um Ihre Verletzung kümmern wenn Sie wollen.", TIMESTAMP('2022-01-25', '07:50:00'), 15, 1);
+        VALUES ("Wir entschuldigen uns sehr für Ihre Unannehmlichkeiten, unser eigener Hausarzt kann sich um Ihre Verletzung kümmern wenn Sie wollen.", TIMESTAMP('2022-01-25', '07:50:00'), 15, 3);
