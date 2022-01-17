@@ -8,8 +8,6 @@
         new NumberValidateable("USER_ID", $_POST, 0, PHP_INT_MAX)
     );
 
-    error_log(print_r($_POST, TRUE));
-
     $validator->validate();
     if ($validator->hasFailed()) {
         if (isset($_POST["TICKET_ID"])) {
