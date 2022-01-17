@@ -7,21 +7,21 @@
         <?php
             if ($STATUS !== 0) {
                 echo "<li>";
-                echo "<a class='dropdown-item' href='statusChange.php?id=$ID?>&status=0'>öffnen</a>";
+                echo "<a class='dropdown-item' href='changeStatus.php?id=$ID?>&status=0&origin=$origin'>öffnen</a>";
                 echo "</li>";
             }
         ?>    
         <?php
             if ($STATUS !== 1) {
                 echo "<li>";
-                echo "<a class='dropdown-item' href='statusChange.php?id=$ID?>&status=1'>erfolgreich schließen</a>";
+                echo "<a class='dropdown-item' href='changeStatus.php?id=$ID?>&status=1&origin=$origin'>erfolgreich schließen</a>";
                 echo "</li>";
             }
         ?>    
         <?php
             if ($STATUS !== 2) {
                 echo "<li>";
-                echo "<a class='dropdown-item' href='statusChange.php?id=$ID?>&status=2'>erfolglos schließen</a>";
+                echo "<a class='dropdown-item' href='changeStatus.php?id=$ID?>&status=2&origin=$origin'>erfolglos schließen</a>";
                 echo "</li>";
             }
         ?>    

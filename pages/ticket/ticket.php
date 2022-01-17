@@ -9,7 +9,11 @@
     <td><?=$FIRST_NAME?></td>
     <td><?=formatTimestamp($CREATION_TIME)?></td>
     <td>
-        <?php include "ticketStatusButton.php"; ?> </td> 
+        <?php
+            $origin = "/pages/ticket/tickets.php";
+            require "ticketStatusButton.php";
+        ?>
+    </td> 
     <td>
         <a href="ticketDetails.php?id=<?=$ID?>" class='table-icon-button'>
             <img src='../../../icon/box-arrow-up-right.svg' alt='Open-Icon'/>
