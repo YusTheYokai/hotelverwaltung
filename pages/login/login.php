@@ -9,17 +9,26 @@
 
     $validationFailed = FALSE;
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        $username = $_POST["username"];
-        $password = $_POST["password"];
-        if (isset($username) && isset($password)) {
-            $user = getUser($db, $username);
-            if (!empty($user) && sha1($password) == $user["PASSWORD"] && $user["ACTIVE"]) {
-                createFolderIfAbsent($username);
-                $_SESSION["user"] = $user;
-                header("Location: ../../index.php");
-            } else {
-                $validationFailed = TRUE;
-            }
+        require_once "../../util/validation/validation.php";
+        $validator = new Validator(
+            new TextValidateable("USERNAME", $_POST, 3, 20),
+            new TextValidateable("PASSWORD", $_POST, 8, 50),
+        );
+        $validator->validate();
+        if ($validator->hasFailed()) {
+            header("Location: login.php?" . $validator->generateUrlErrorParams());
+            exit;
+        }
+
+        $username = $_POST["USERNAME"];
+        $password = $_POST["PASSWORD"];
+        $user = getUser($db, $username);
+        if (!empty($user) && sha1($password) == $user["PASSWORD"] && $user["ACTIVE"]) {
+            createFolderIfAbsent($username);
+            $_SESSION["user"] = $user;
+            header("Location: ../../index.php");
+        } else {
+            $validationFailed = TRUE;
         }
     }
 
@@ -72,10 +81,10 @@
             <h1>Login</h1>
             <form class="text-center" method="POST">
                 <div class="form-group">
-                    <input id="inputUsername" name="username" type="text" class="input-text form-control" placeholder="Nutzername" required>
+                    <input id="inputUsername" name="USERNAME" type="text" class="input-text form-control" placeholder="Nutzername" minlength="3" maxlength="20" required>
                 </div>
                 <div class="form-group mt-3">
-                    <input id="inputPassword" name="password" type="password" class="input-text form-control" placeholder="Passwort" required>
+                    <input id="inputPassword" name="PASSWORD" type="password" class="input-text form-control" placeholder="Passwort" minlength="8" maxlength="50" required>
                 </div>
                 <?php 
                     if ($validationFailed) {
@@ -86,7 +95,7 @@
             </form>
         </div>
 
-        <?php include "../../footer.php"; ?>
+        <?php require_once "../../util/bottomIncludes.php"; ?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>
 </html>

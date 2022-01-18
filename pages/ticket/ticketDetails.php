@@ -3,16 +3,20 @@
     require_once "../../db/logIntoDB.php";
     require_once "../../displayUtils.php";
     require_once "../../guard.php";
+    require_once "../../util/validation/validation.php";
 
     guardLoggedIn();
-    if (!isset($_GET["id"])) {
-        header("Location: /pages/ticket/tickets.php");
+
+    $validator = new Validator(new NumberValidateable("TICKET_ID", $_GET, 0, PHP_INT_MAX));
+    $validator->validate();
+    if ($validator->hasFailed()) {
+        header("Location: tickets.php?" . $validator->generateUrlErrorParams());
         exit;
     }
 
     $ticketQuery = "SELECT TITLE, CONTENT, PICTURE, STATUS, CREATION_TIME, FIRST_NAME, LAST_NAME, USERNAME FROM ticket JOIN user ON (ticket.USER_ID = user.ID) WHERE ticket.ID = ?;";
     $ticketStatement = $db->prepare($ticketQuery);
-    $ticketStatement->bind_param("i", $_GET["id"]);
+    $ticketStatement->bind_param("i", $_GET["TICKET_ID"]);
     $ticketStatement->execute();
     $ticket = $ticketStatement->get_result()->fetch_assoc();
 
@@ -25,7 +29,7 @@
 
     $commentsQuery = "SELECT CONTENT, CREATION_TIME, FIRST_NAME, LAST_NAME FROM comment JOIN user ON (comment.USER_ID = user.ID) WHERE TICKET_ID = ? ORDER BY comment.CREATION_TIME DESC;";
     $commentsStatement = $db->prepare($commentsQuery);
-    $commentsStatement->bind_param("i", $_GET["id"]);
+    $commentsStatement->bind_param("i", $_GET["TICKET_ID"]);
     $commentsStatement->execute();
     $commentsStatement->bind_result($content, $creationTime, $firstName, $lastName);
 ?>
@@ -52,9 +56,9 @@
             </div>
             <div class="col-sm-6" style="text-align: right;">
                 <?php
-                    $ID = $_GET["id"];
+                    $ID = $_GET["TICKET_ID"];
                     $STATUS = $ticket["STATUS"];
-                    $origin = "/pages/ticket/ticketDetails.php?id=" . $ID;
+                    $origin = "/pages/ticket/ticketDetails.php?TICKET_ID=" . $ID;
                     require_once "ticketStatusButton.php";
                 ?>
             </div>
@@ -71,7 +75,7 @@
             <div class="form-group">
                 <textarea id="contentInput" name="CONTENT" class="input-text form-control" placeholder="Neuer Kommentar" required maxlength="2000"></textarea>
             </div>
-            <input type="hidden" id="ticketIdInput" name="TICKET_ID" required value="<?=$_GET["id"]?>" />
+            <input type="hidden" id="ticketIdInput" name="TICKET_ID" required value="<?=$_GET["TICKET_ID"]?>" />
             <input type="hidden" id="userIdInput" name="USER_ID" required value="<?=$_SESSION["user"]["ID"]?>" />
             <button type="submit" id="submitCommentButton" class="btn btn-primary mt-4">Erstellen</button>
         </form>
