@@ -17,23 +17,25 @@
 </head>
 <body>
     <?php
-        include "../../menubar.php";
+        require_once "../../menubar.php";
     ?>
     <div id="createTicketContainer" class="container-fluid overlay quarter-width">
         <h1>Ticket erstellen</h1>
         <form action="createTicket.php" class="text-center" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-                <input id="inputTitle" name="title" type="text" class="input-text form-control" placeholder="Titel" minlength="1" maxlength="100" required>
+                <input id="inputTitle" name="TITLE" type="text" class="input-text form-control" placeholder="Titel" minlength="1" maxlength="100" required>
             </div>
             <div class="form-group mt-3">
-                <textarea id="inputContent" name="content" class="input-text form-control" placeholder="Beschreibung" minlength="1" maxlength="2000" required></textarea>
+                <textarea id="inputContent" name="CONTENT" class="input-text form-control" placeholder="Beschreibung" minlength="1" maxlength="2000" required></textarea>
             </div>
             <div class="form-group mt-3">
-                <input id="inputPicture" name="picture" class="input-text form-control" type="file" accept=".jpeg">
+                <input id="inputPicture" name="PICTURE" class="input-text form-control" type="file" accept=".jpeg">
             </div>
             <button type="submit" class="btn btn-primary mt-4">Erstellen</button>
         </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <?php
+        require_once "../../util/bottomIncludes.php";
+    ?>
 </body>
 </html>

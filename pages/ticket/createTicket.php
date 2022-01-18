@@ -6,8 +6,8 @@
     require_once "../../util/validation/validation.php";
 
     $validator = new Validator(
-        new TextValidateable("title", $_POST, 1, 100),
-        new TextValidateable("content", $_POST, 1, 2000),
+        new TextValidateable("TITLE", $_POST, 1, 100),
+        new TextValidateable("CONTENT", $_POST, 1, 2000),
     );
     $validator->validate();
     if ($validator->hasFailed()) {
@@ -20,7 +20,7 @@
     if (!$addStatement) {
         error_log($db->error);
     }
-    $addStatement->bind_param("sssi", $_POST["title"], $_POST["content"], $fileName, $_SESSION["user"]["ID"]);
+    $addStatement->bind_param("sssi", $_POST["TITLE"], $_POST["CONTENT"], $fileName, $_SESSION["user"]["ID"]);
     $addStatement->execute();
     header("Location: createTicketController.php");
 ?>
