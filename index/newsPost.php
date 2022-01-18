@@ -21,7 +21,7 @@
                 <p class="author-date"><?=formatName($firstName, $lastName)?> - <?=formatTimestamp($creationTime)?></p>
                 <?php
                     if (isAdmin()) {
-                        require "deleteNewsPostButton.php";
+                        require "newsPostActions.php";
                     }
                 ?>
             </div>
