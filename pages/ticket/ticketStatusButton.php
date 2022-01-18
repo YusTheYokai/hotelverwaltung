@@ -19,7 +19,7 @@
             }
         ?>    
         <?php
-            if ($STATUS !== 2) {
+            if ($STATUS !== 2 && isTechnician()) {
                 echo "<li>";
                 echo "<a class='dropdown-item' href='changeStatus.php?id=$ID?>&status=2&origin=$origin'>erfolglos schließen</a>";
                 echo "</li>";
