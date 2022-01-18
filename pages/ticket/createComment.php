@@ -11,8 +11,7 @@
     $validator->validate();
     if ($validator->hasFailed()) {
         if (isset($_POST["TICKET_ID"])) {
-            $ticketId = $_POST["TICKET_ID"];
-            header("Location: ticketDetails.php?id=$ticketId&" . $validator->generateUrlErrorParams());
+            header("Location: ticketDetails.php?id=" . $_POST["TICKET_ID"] . "&" . $validator->generateUrlErrorParams());
         } else {
             header("Location: tickets.php?" . $validator->generateUrlErrorParams());
         }
