@@ -20,7 +20,7 @@
         error_log($db->error);
     }
     $statement->execute();
-    $statement->bind_result($id, $honorific, $firstName, $lastName, $username, $email, $role, $active);
+    $statement->bind_result($id, $honorific, $lastName, $firstName, $username, $email, $role, $active);
 ?>
 <!DOCTYPE html>
     <html lang="en">
