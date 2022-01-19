@@ -5,8 +5,6 @@
         exit;
     }
 
-    require_once "../../db/logIntoDB.php";
-
     $validationFailed = FALSE;
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         require_once "../../util/validation/validation.php";
@@ -19,6 +17,8 @@
             header("Location: login.php?" . $validator->generateUrlErrorParams());
             exit;
         }
+
+        require_once "../../db/logIntoDB.php";
 
         $username = $_POST["USERNAME"];
         $password = $_POST["PASSWORD"];
@@ -77,7 +77,6 @@
         <?php
             require_once "../../menubar.php";
         ?>
-        <!-- Login -->
         <div id="loginContainer" class="container-fluid overlay quarter-width">
             <h1>Login</h1>
             <form class="text-center" method="POST">
@@ -95,7 +94,6 @@
                 <button type="submit" class="btn btn-primary mt-4">Login</button>
             </form>
         </div>
-
         <?php require_once "../../util/bottomIncludes.php"; ?>
     </body>
 </html>

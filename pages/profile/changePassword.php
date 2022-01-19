@@ -1,12 +1,13 @@
 <?php
-    session_start();
-    require_once "../../db/logIntoDB.php";
+    require_once "../../guard.php";
     require_once "../../util/validation/validation.php";
+    session_start();
 
     $userIdValidator = new Validator(new NumberValidateable("USER_ID", $_POST, 0, PHP_INT_MAX));
+
     $userIdValidator->validate();
-    if ($validator->hasFailed()) {
-        header("Location: ../user/users.php?" . $validator->generateUrlErrorParams());
+    if ($userIdValidator->hasFailed()) {
+        header("Location: ../user/users.php?" . $userIdValidator->generateUrlErrorParams());
         exit;
     }
 
@@ -39,6 +40,7 @@
         }
     }
 
+    require_once "../../db/logIntoDB.php";
     $query = "UPDATE user SET password = ? WHERE id = ?;";
     $statement = $db->prepare($query);
     $statement->bind_param("si", $newPassword, $_POST["USER_ID"]);

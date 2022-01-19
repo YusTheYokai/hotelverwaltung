@@ -1,6 +1,8 @@
 <?php
-    require_once "../../db/logIntoDB.php";
+    require_once "../../guard.php";
     require_once "../../util/validation/validation.php";
+
+    guardLoggedIn();
 
     $validator = new Validator(
         new TextValidateable("CONTENT", $_POST, 1, 2000),
@@ -18,6 +20,7 @@
         exit;
     }
 
+    require_once "../../db/logIntoDB.php";
     $query = "INSERT INTO comment (CONTENT, TICKET_ID, USER_ID) VALUES (?, ?, ?);";
     $statement = $db->prepare($query);
     $statement->bind_param("sii", $_POST["CONTENT"], $_POST["TICKET_ID"], $_POST["USER_ID"]);

@@ -3,7 +3,6 @@
     require_once "../../db/logIntoDB.php";
     require_once "../../displayUtils.php";
     require_once "../../guard.php";
-    require_once "../../util/validation/validation.php";
 
     guardLoggedIn();
 
@@ -14,6 +13,7 @@
         exit;
     }
 
+    require_once "../../util/validation/validation.php";
     $ticketQuery = "SELECT TITLE, CONTENT, PICTURE, STATUS, CREATION_TIME, FIRST_NAME, LAST_NAME, USERNAME FROM ticket JOIN user ON (ticket.USER_ID = user.ID) WHERE ticket.ID = ?;";
     $ticketStatement = $db->prepare($ticketQuery);
     $ticketStatement->bind_param("i", $_GET["TICKET_ID"]);

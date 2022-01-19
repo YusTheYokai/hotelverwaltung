@@ -1,25 +1,23 @@
 <?php
     require_once "../../guard.php";
-    require_once "../../db/logIntoDB.php";
     require_once "../../util/validation/validation.php";
-
+    
     session_start();
-
-    // Wenn die User-ID als Parameter übergeben wird soll das Profil dieses Users angezeigt werden.
-    //$id = isset($_GET["userId"]) ? $_GET["userId"] : $_SESSION["user"]["ID"];
-
+    guardLoggedIn();
+    
     $validator = new Validator(new NumberValidateable("USER_ID", $_GET, 0, PHP_INT_MAX));
     $validator->validate();
     if ($validator->hasFailed()) {
         header("Location: ../user/users.php?" . $validator->generateUrlErrorParams());
         exit;
     }
-
+    
     // Laden des Users aus der Datenbank
     // Auch wenn man sein eigenes Profil bearbeiten möchte macht es Sinn,
     // den User erneut aus der Datenbank zu laden, da man nach dem Speichern
     // erneut auf dieser Seite landet und somit die Session-Variable für
     // den User refreshed werden kann.
+    require_once "../../db/logIntoDB.php";
     $query = "SELECT * FROM user WHERE ID LIKE ?;";
     $statement = $db->prepare($query);
     $statement->bind_param("i", $_GET["USER_ID"]);

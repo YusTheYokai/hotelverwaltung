@@ -1,8 +1,7 @@
 <?php
-    session_start();
-    require_once "db/logIntoDB.php";
     require_once "guard.php";
-
+    session_start();
+    
     // Wenn der logout-Parameter geschickt wird soll überprüft werden,
     // ob dieser true ist. Ist dies der Fall wird der User ausgeloggt.
     if (isset($_GET["logout"])) {
@@ -12,13 +11,14 @@
             session_destroy();
         }
     }
-
+    
     $filter = "%";
     if (isset($_GET["filter"]) && !empty($_GET["filter"])) {
         $filter = "%" . htmlspecialchars_decode($_GET["filter"]) . "%";
     }
-
+    
     // Laden aller News-Posts aus der Datenbank.
+    require_once "db/logIntoDB.php";
     $selectAllQuery = "SELECT news_post.ID, TITLE, CONTENT, PICTURE, CREATION_TIME, FIRST_NAME, LAST_NAME, USERNAME FROM news_post JOIN user ON (news_post.USER_ID = user.ID) WHERE TITLE LIKE ? OR CONTENT LIKE ? ORDER BY CREATION_TIME DESC;";
     $selectAllStatement = $db->prepare($selectAllQuery);
     $selectAllStatement->bind_param("ss", $filter, $filter);
@@ -45,6 +45,7 @@
                 require_once "index/newsPostDialog.php";
             }
         ?>
+
         <div id="actions" class="position-sticky">
             <?php
                 if (isAdmin()) {
@@ -63,6 +64,7 @@
                 ?>
             </div>
         </div>
+
         <div class="footer-margin-bottom" style="margin-top: 20px;">
             <?php
                 while ($selectAllStatement->fetch()) {
@@ -70,10 +72,10 @@
                 }
             ?>
         </div>
+
         <?php
             require_once "/xampp/htdocs/util/bottomIncludes.php";
         ?>
-        
 
         <script>
             let filterButton = document.getElementById("filterButton");

@@ -10,7 +10,7 @@
         <div class="form-group mt-3">
             <input type="password" id="passwordNewConfirm" name="PASSWORD_NEW_CONFIRM" class="input-text form-control" required maxlength="50" placeholder="<?=$lang["PASSWORD_NEW_CONFIRM"]?>" />
         </div>   
-        <input type="hidden" id="userId" name="USER_ID" value="$id" />
+        <input type="hidden" id="userId" name="USER_ID" value="<?=$_GET["USER_ID"]?>" />
         <button type="submit" class="btn btn-primary mt-4">Passwort ändern</button>
     </form>
 </div>

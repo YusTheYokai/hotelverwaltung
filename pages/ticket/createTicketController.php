@@ -1,6 +1,9 @@
 <?php
+    require_once "../../db/logIntoDB.php";
+    require_once "../../guard.php";
+
     session_start();
-    require "../../db/logIntoDB.php";
+    guardLoggedIn();
 ?>
 
 <!DOCTYPE html>
