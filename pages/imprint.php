@@ -13,7 +13,7 @@
     </head>
     <body>
         <?php
-            include "../menubar.php";
+            require_once "../menubar.php";
         ?>
 
         <div id="imprintContainer" class="container-fluid overlay quarter-width text-center footer-margin-bottom">
