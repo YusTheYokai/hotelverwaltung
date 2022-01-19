@@ -7,14 +7,15 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input id="inputTitle" name="title" type="text" class="input-text form-control" placeholder="Titel" required maxlength="100">
+                        <input id="inputTitle" name="TITLE" type="text" class="input-text form-control" placeholder="Titel" required maxlength="100">
                     </div>
                     <div class="form-group mt-3">
-                        <textarea id="inputContent" name="content" type="text" class="input-text form-control" style="height: 200px;" placeholder="Inhalt" required maxlength="2000"></textarea>
+                        <textarea id="inputContent" name="CONTENT" type="text" class="input-text form-control" style="height: 200px;" placeholder="Inhalt" required maxlength="2000"></textarea>
                     </div>
                     <div class="form-group mt-3">
-                        <input id="inputPicture" name="picture" type="file" accept=".jpeg" class="input-text form-control" placeholder="Bild">
+                        <input id="inputPicture" name="PICTURE" type="file" accept=".jpeg" class="input-text form-control" placeholder="Bild">
                     </div>
+                    <input type="hidden" name="ORIGIN" value="../index.php" />
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" type="submit">Speichern</button>

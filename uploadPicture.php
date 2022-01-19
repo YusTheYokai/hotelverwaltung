@@ -1,36 +1,48 @@
 <?php
-    if (isset($_FILES["picture"])) {
+    if (isset($_FILES["PICTURE"]) && !empty($_FILES["PICTURE"]["name"])) {
+        require_once($moveToRoot . "/util/validation/validation.php");
+
         $maxFileSize = 15 * 1000 * 1000;
         $target_dir =  $moveToRoot . "/uploads/" . $_SESSION["user"]["USERNAME"] . "/";
-        $file = $_FILES["picture"];
+        $file = $_FILES["PICTURE"];
         $fileName = $file["name"];
         $target_file = $target_dir . basename($fileName);
-        
-        // Check if the file is of the accepted file type
+
+        $validator = new Validator();
+        $validationResultExtension = new ValidationResult("FILE_EXTENSION");
+        $validationResultSize = new ValidationResult("FILE_SIZE");
+        $validationResultExists = new ValidationResult("FILE_EXISTS");
+
+        // Prüfen, ob die Dateiendung passt
         $extension = pathinfo($fileName, PATHINFO_EXTENSION);
         if ($extension !== "jpeg") {
-            echo "<p class='red'>Sorry, only JPEG-files can be accepted!</p>";
-            return;
-        // Check if the file size is below the maximum limit
+            $validationResultExtension->addErrorMessage("NOT_JPEG");
+        // Prüfen, ob die Datei größer als 15MB ist
         } else if ($file["size"] > $maxFileSize) {
-            echo "<p class='red'>Sorry, only JPEG-files of 15MB or less can be accepted!</p>";
-            return;
-        // Check if the file already exists
+            $validationResultSize->addErrorMessage("TOO_BIG");
+        // Prüfen, ob die Datei bereits existiert
         } else if (file_exists($target_file)) {
-            echo "<p class='red'>Sorry, file already exists!</p>";
-            return;
+            $validationResultExists->addErrorMessage("ALREADY_EXISTS");
         }
-        
-        // If everything is OK, upload the file
+
+        $validator->addValidationResult($validationResultExtension);
+        $validator->addValidationResult($validationResultSize);
+        $validator->addValidationResult($validationResultExists);
+        if ($validator->hasFailed()) {
+            if (isset($_POST["ORIGIN"])) {
+                header("Location: " . $_POST["ORIGIN"] . "?" . $validator->generateUrlErrorParams());
+            } else {
+                header("Location: " . $moveToRoot . "/index.php?" . $validator->generateUrlErrorParams());
+            }
+            exit;
+        }
+
+        // Keine Validierungsfehler -> Datei erstellen
         if (move_uploaded_file($file["tmp_name"], $target_file)) {
             list($width, $height) = getimagesize($target_file);
             $thumbnail = imagecreatetruecolor(720, 480);
             $source = imagecreatefromjpeg($target_file);
-            if(imagecopyresized($thumbnail, $source, 0, 0, 0, 0, 720, 480, $width, $height) && imagejpeg($thumbnail, $target_dir . "thumbnails/" . $fileName)) {
-                echo "<p class='green'>The file ";
-                echo $fileName;
-                echo " has been uploaded</p>";
-            }
+            imagecopyresized($thumbnail, $source, 0, 0, 0, 0, 720, 480, $width, $height) && imagejpeg($thumbnail, $target_dir . "thumbnails/" . $fileName);
         }
     }
 ?>
