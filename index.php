@@ -41,7 +41,7 @@
         <?php
             include "menubar.php";
             if (isAdmin()) {
-                include "index/newsPostDialog.php";
+                include "index/createNewsPostDialog.php";
             }
         ?>
         <div id="actions" class="position-sticky">
@@ -78,7 +78,7 @@
 
         <script>
             let filterButton = document.getElementById("filterButton");
-            let filterInput =  document.getElementById("filterInput");
+            let filterInput = document.getElementById("filterInput");
 
             // Dem Filterbutton einen Klick-Listener hinzufügen, damit das Eingabefeld angezeigt wird
             filterButton.addEventListener("click", showInput);

@@ -28,3 +28,7 @@
 .news-post-footer > p {
     margin-bottom: 0;
 }
+
+.display-none {
+    display: none;
+}

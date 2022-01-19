@@ -1,4 +1,4 @@
-<div>
+<div style="display: flex;">
     <button id="editNewsPostButton"
             type="button"
             class="table-icon-button"
@@ -7,6 +7,7 @@
             data-bs-target="#editNewsPostDialog">
         <img src="/icon/pencil-fill.svg" alt="Stift-Icon" />
     </button>
+    <?php require_once "editNewsPostDialog.php"; ?>
     <a id="deleteNewsPostButton" href="/index/deleteNewsPost.php?id=<?=$id?>" class="table-icon-button">
         <img src="/icon/trash-fill.svg" alt="Mülltonnen-Icon" title="News-Post löschen" />
     </a>

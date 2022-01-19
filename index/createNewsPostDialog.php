@@ -1,16 +1,16 @@
-<div id="newsPostDialog" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="newsPostDialogHeader" aria-hidden="true">
+<div id="createNewsPostDialog" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="createNewsPostDialogHeader" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content dialog">
-            <form action="index/createNewsPost.php" enctype="multipart/form-data" method="POST">
-                <div id="newsPostDialogHeader" class="modal-header">
+            <form action="/index/createNewsPost.php" enctype="multipart/form-data" method="POST">
+                <div id="createNewsPostDialogHeader" class="modal-header">
                     <h3>News-Post erstellen</h3>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input id="inputTitle" name="title" type="text" class="input-text form-control" placeholder="Titel" required maxlength="100">
+                        <input id="inputTitle" name="title" type="text" class="input-text form-control" placeholder="Titel" required minlength="1" maxlength="100">
                     </div>
                     <div class="form-group mt-3">
-                        <textarea id="inputContent" name="content" type="text" class="input-text form-control" style="height: 200px;" placeholder="Inhalt" required maxlength="2000"></textarea>
+                        <textarea id="inputContent" name="content" type="text" class="input-text form-control" style="height: 200px;" placeholder="Inhalt" required minlength="1" maxlength="2000"></textarea>
                     </div>
                     <div class="form-group mt-3">
                         <input id="inputPicture" name="picture" type="file" accept=".jpeg" class="input-text form-control" placeholder="Bild">
