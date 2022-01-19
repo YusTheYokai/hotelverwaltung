@@ -1,6 +1,6 @@
 <?php
     $columnsArray = explode(",", $columns);
-    
+
     $sortBy = "";
     $order = "";
     if (isset($_GET["sortBy"]) &&
