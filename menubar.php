@@ -3,7 +3,7 @@
 ?>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Hotelverwaltung</a>
+        <a class="navbar-brand" href="#" style="pointer-events: none;">Hu-Lerchl</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
