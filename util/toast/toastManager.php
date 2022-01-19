@@ -5,7 +5,7 @@
     $counter = 0;
     while (toastParamExists($counter)) {
         $id = $counter;
-        $type = $_GET["type$counter"];
+        $type = translate($_GET["type$counter"]);
         $msgParts = explode(":", $_GET["msg$counter"]);
         $msgParts = array_map(function($key) { return translate($key); }, $msgParts);
         $msg = implode(": ", $msgParts);

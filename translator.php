@@ -9,6 +9,10 @@
 
     function translate($key) {
         global $lang;
-        return $lang[$key];
+        if (isset($lang[$key])) {
+            return $lang[$key];
+        } else {
+            return "???";
+        }
     }
 ?>
