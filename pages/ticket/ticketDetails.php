@@ -1,19 +1,20 @@
 <?php
     session_start();
-    require_once "../../db/logIntoDB.php";
+    require_once "../../util/validation/validation.php";
     require_once "../../displayUtils.php";
     require_once "../../guard.php";
 
     guardLoggedIn();
 
     $validator = new Validator(new NumberValidateable("TICKET_ID", $_GET, 0, PHP_INT_MAX));
+
     $validator->validate();
     if ($validator->hasFailed()) {
         header("Location: tickets.php?" . $validator->generateUrlErrorParams());
         exit;
     }
 
-    require_once "../../util/validation/validation.php";
+    require_once "../../db/logIntoDB.php";
     $ticketQuery = "SELECT TITLE, CONTENT, PICTURE, STATUS, CREATION_TIME, FIRST_NAME, LAST_NAME, USERNAME FROM ticket JOIN user ON (ticket.USER_ID = user.ID) WHERE ticket.ID = ?;";
     $ticketStatement = $db->prepare($ticketQuery);
     $ticketStatement->bind_param("i", $_GET["TICKET_ID"]);
@@ -65,7 +66,7 @@
             </div>
         </div>
         <p><?=$ticket["CONTENT"]?></p>
-        <img src="<?=$picture?>" alt="Ticket-Bild" style="max-width: 100%;" />
+        <img src="<?=$picture?>" alt="Ticket-Bild" class="ticket-image" style="max-width: 100%;" />
         <div class="mt-4">
             <?=formatName($ticket["FIRST_NAME"], $ticket["LAST_NAME"])?> - <?=formatTimestamp($ticket["CREATION_TIME"])?>
         </div>

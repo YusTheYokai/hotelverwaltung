@@ -3,21 +3,21 @@
         <?=formatTicketStatus($STATUS)?>
     </button>
     <?php
-        if (!isTechnician() && $STATUS !== 2) {
+        if (isTechnician() || (!isTechnician() && $STATUS !== 2)) {
         echo "<ul class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>";
                 if ($STATUS !== 0) {
                     echo "<li>";
-                    echo "<a class='dropdown-item' href='changeStatus.php?id=$ID?>&status=0&origin=$origin'>öffnen</a>";
+                    echo "<a class='dropdown-item' href='changeStatus.php?TICKET_ID=$ID?>&STATUS=0&ORIGIN=$origin'>öffnen</a>";
                     echo "</li>";
                 }  
                 if ($STATUS !== 1) {
                     echo "<li>";
-                    echo "<a class='dropdown-item' href='changeStatus.php?id=$ID?>&status=1&origin=$origin'>erfolgreich schließen</a>";
+                    echo "<a class='dropdown-item' href='changeStatus.php?TICKET_ID=$ID?>&STATUS=1&ORIGIN=$origin'>erfolgreich schließen</a>";
                     echo "</li>";
                 }
                 if ($STATUS !== 2 && isTechnician()) {
                     echo "<li>";
-                    echo "<a class='dropdown-item' href='changeStatus.php?id=$ID?>&status=2&origin=$origin'>erfolglos schließen</a>";
+                    echo "<a class='dropdown-item' href='changeStatus.php?TICKET_ID=$ID?>&STATUS=2&ORIGIN=$origin'>erfolglos schließen</a>";
                     echo "</li>";
                 }   
         echo "</ul>";
