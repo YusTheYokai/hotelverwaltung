@@ -1,26 +1,23 @@
 <?php
-    session_start();
-
     require_once "../../guard.php";
-    require_once "../../db/logintoDB.php";
     require_once "../../util/validation/validation.php";
 
+    session_start();
     guardAdmin();
 
-    $validator = new Validator(new NumberValidateable("TICKET_ID", $_POST, 0, PHP_INT_MAX));
+    $validator = new Validator(new NumberValidateable("TICKET_ID", $_GET, 0, PHP_INT_MAX));
+
     $validator->validate();
     if ($validator->hasFailed()) {
         header("Location: tickets.php?" . $validator->generateUrlErrorParams());
         exit;
     }
 
-    if (isset($_POST["TICKET_ID"]) && $_POST["TICKET_ID"] > 0) {
-        $sql = "DELETE FROM ticket WHERE ID = ?";
-        $stmt = $db->prepare($sql);
-        $stmt->bind_param("i", $_POST["TICKET_ID"]);
-        $stmt->execute();
-        $db->close();
+    require_once "../../db/logintoDB.php";
+    $sql = "DELETE FROM ticket WHERE ID = ?";
+    $stmt = $db->prepare($sql);
+    $stmt->bind_param("i", $_GET["TICKET_ID"]);
+    $stmt->execute();
 
-        header("Location: tickets.php");
-    }
+    header("Location: tickets.php?type0=INFO&msg0=DELETED");
 ?>
