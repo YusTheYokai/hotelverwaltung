@@ -45,11 +45,11 @@
     </head>
     <body>
         <?php 
-            include "../../menubar.php";
+            require_once "../../menubar.php";
 
             $tableTitle = "Tickets";
             $entity = "ticket.php";
-            include "../../table/table.php";
+            require_once "../../table/table.php";
 
             require_once "../../util/bottomIncludes.php";
         ?>

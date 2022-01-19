@@ -47,7 +47,7 @@
     <link href="/css/ticket.css" rel="stylesheet">
 </head>
 <body>
-    <?php include "../../menubar.php"; ?>
+    <?php require_once "../../menubar.php"; ?>
 
     <div id="ticketDetailsContainer" class="container-fluid overlay position-sticky" style="margin-top: 10vh;">
         <div class="row justify-content-between">
@@ -84,7 +84,7 @@
     <div id="commentsContainer" class="container-fluid footer-margin-bottom">
         <?php
             while ($commentsStatement->fetch()) {
-                include "comment/comment.php";
+                require "comment/comment.php";
             }
         ?>
     </div>

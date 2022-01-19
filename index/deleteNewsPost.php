@@ -2,7 +2,7 @@
     session_start();
 
     require_once "../guard.php";
-    require "../db/logintoDB.php";
+    require_once "../db/logintoDB.php";
 
     guardAdmin();
 

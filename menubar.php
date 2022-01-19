@@ -16,10 +16,10 @@
                 </li>
                 <?php
                     if (isLoggedIn()) {
-                        require "menubar/guestMenubarLinks.php";
+                        require_once "menubar/guestMenubarLinks.php";
                     }
                     if (isAdmin()) {
-                        require "menubar/adminMenubarLinks.php";
+                        require_once "menubar/adminMenubarLinks.php";
                     }
                 ?>
             </ul>

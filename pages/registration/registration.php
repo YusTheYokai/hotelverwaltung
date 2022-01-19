@@ -1,5 +1,5 @@
 <?php
-    require "../../guard.php";
+    require_once "../../guard.php";
     session_start();
     guardAdmin();
 ?>
@@ -15,7 +15,7 @@
     <body>
         <?php
             $lang = parse_ini_file("../../lang/de.ini", TRUE);
-            include "../../menubar.php";
+            require_once "../../menubar.php";
         ?>
 
         <div id="registrationContainer" class="container-fluid overlay quarter-width">
@@ -55,11 +55,8 @@
             </form>
         </div>
         <?php
-            include "../../footer.php";
-            include "../../util/toast/toastManager.php";
+            require_once "../../util/bottomIncludes.php";
         ?>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <?php include "../../util/toast/toastManagerScript.php";?>
     </body>
 </html>
 
