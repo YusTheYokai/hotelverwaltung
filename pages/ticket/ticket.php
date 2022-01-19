@@ -15,13 +15,13 @@
         ?>
     </td> 
     <td>
-        <a href="ticketDetails.php?id=<?=$ID?>" class='table-icon-button'>
+        <a href="ticketDetails.php?TICKET_ID=<?=$ID?>" class='table-icon-button'>
             <img src='../../../icon/box-arrow-up-right.svg' alt='Open-Icon'/>
         </a>
         <?php
             if (isAdmin($_SESSION["user"])) {    //TODO: change Post Method to Get Method
                 echo   "<form action = 'deleteTicket.php' method = 'post'>
-                            <input type='hidden' name='id' value = '$ID'/>
+                            <input type='hidden' name='TICKET_ID' value = '$ID'/>
                             <button class='table-icon-button' type='submit' value = 'delete'>
                                 <img src='../../../icon/trash-fill.svg' alt='Trash-Icon'/>
                             </button>

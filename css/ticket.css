@@ -2,7 +2,7 @@
     width: 90vw;
 }
 
-#ticketDetailsContainer {
+#ticketDetailsContainer, #createTicketContainer {
     margin-top: 10vh;
 }
 

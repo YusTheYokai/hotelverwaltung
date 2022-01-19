@@ -1,39 +1,48 @@
 <?php
     session_start();
     require "../../db/logIntoDB.php";
+    require_once "../../util/validation/validation.php";
 
-    $userId = isset($_POST["userId"]) ? $_POST["userId"] : $_SESSION["user"]["ID"];
-    if (isset($_POST["userId"])) {
-        $currentPassword = $_SESSION["user"]["PASSWORD"];
-    } else {
-        $query = "SELECT password FROM user WHERE id = ?;";
-        $statement = $db->prepare($query);
-        $statement->bind_param("i", $userId);
-        $statement->execute();
-        $currentPassword = $statement->get_result()->fetch_assoc()["password"];
-    }
-
-    if (!isset($_POST["userId"]) && sha1($_POST["passwordCurrent"]) !== $currentPassword) {
-        header("Location: profile.php?type=ERROR&msg=WRONG_PASSWORD");
+    $userIdValidator = new Validator(new NumberValidateable("USER_ID", $_POST, 0, PHP_INT_MAX));
+    $userIdValidator->validate();
+    if ($validator->hasFailed()) {
+        header("Location: ../user/users.php?" . $validator->generateUrlErrorParams());
         exit;
     }
 
-    if ($_POST["passwordNew"] !== $_POST["passwordNewConfirm"]) {
-        header("Location: profile.php?type=ERROR&msg=PASSWORDS_DO_NOT_MATCH");
+    $validatables = [];
+    $editingOwnProfile = $_POST["USER_ID"] === $_SESSION["user"]["ID"];
+    if ($editingOwnProfile) {
+        $validatables = [new TextValidateable("PASSWORD_CURRENT", $_POST, 8, 50)];
+    }
+    array_push($validatables, 
+            new TextValidateable("PASSWORD_NEW", $_POST, 8, 50),
+            new TextValidateable("PASSWORD_NEW_CONFIRM", $_POST, 8, 50),
+            new MatchValidateable("PASSWORD_NEW", "PASSWORD_NEW_CONFIRM", $_POST)
+    );
+
+    $validator = new Validator(...$validatables);
+    $validator->validate();
+    if ($validator->hasFailed()) {
+        header("Location: profile.php?USER_ID=" . $_POST["USER_ID"] . "&" . $validator->generateUrlErrorParams());
         exit;
     }
     
-    $newPassword = sha1($_POST["passwordNew"]);
-    if ($newPassword === $currentPassword) {
-        header("Location: profile.php?type=ERROR&msg=NEW_PASSWORD_MUST_NOT_BE_CURRENT_PASSWORD");
-        exit;
+    $newPassword = sha1($_POST["PASSWORD_NEW"]);
+    if ($editingOwnProfile) {
+        if (sha1($_POST["PASSWORD_CURRENT"]) !== $_SESSION["user"]["PASSWORD"]) {
+            header("Location: profile.php?USER_ID=" . $_POST["USER_ID"] . "&type0=ERROR&msg0=WRONG_PASSWORD");
+            exit;
+        } else if ($newPassword === $_SESSION["user"]["PASSWORD"]) {
+            header("Location: profile.php?USER_ID=" . $_POST["USER_ID"] . "&type0=ERROR&msg0=NEW_PASSWORD_MUST_NOT_BE_CURRENT_PASSWORD");
+            exit;
+        }
     }
 
     $query = "UPDATE user SET password = ? WHERE id = ?;";
     $statement = $db->prepare($query);
-    $statement->bind_param("si", $newPassword, $userId);
+    $statement->bind_param("si", $newPassword, $_POST["USER_ID"]);
     $statement->execute();
 
-    $userIdParam = isset($_POST["userId"]) ? "userId=" . $userId . "&" : "";
-    header("Location: profile.php?" . $userIdParam . "type=INFO&msg=PASSWORD_CHANGED");
+    header("Location: profile.php?USER_ID=" . $_POST["USER_ID"] . "&type0=INFO&msg0=PASSWORD_CHANGED");
 ?>

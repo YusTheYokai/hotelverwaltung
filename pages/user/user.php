@@ -32,7 +32,7 @@
         <a href="<?=$setActiveUrl?>" class="table-icon-button" title="<?=$title?>">
             <img src="<?=$icon?>" alt="<?=$alt?>" />
         </a>
-        <a href="../profile/profile.php?userId=<?=$id?>" class="table-icon-button" title="Profil bearbeiten">
+        <a href="../profile/profile.php?USER_ID=<?=$id?>" class="table-icon-button" title="Profil bearbeiten">
             <img src="../../icon/person-circle.svg" alt="User Icon" />
         </a>
     </td>

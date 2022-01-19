@@ -157,6 +157,27 @@
         }
     }
 
+    class MatchValidateable extends Validateable {
+
+        private $associativeNameConfirm;
+
+        // KONSTRUKTOR
+
+        public function __construct($associativeName, $associativeNameConfirm, $associativeArray) {
+            parent::__construct($associativeName, $associativeArray);
+            $this->associativeNameConfirm = $associativeNameConfirm;
+        }
+
+        // METHODEN
+
+        public function validate() {
+            if ($this->associativeArray[$this->associativeName] !== $this->associativeArray[$this->associativeNameConfirm]) {
+                $this->validationResult->addErrorMessage("DO_NOT_MATCH"); 
+            }
+
+            return $this->validationResult;
+        }
+    } 
     /**
      * Validateable für Textfelder.
      */
@@ -203,4 +224,6 @@
             return $this->validationResult;
         }
     }
+
 ?>
+

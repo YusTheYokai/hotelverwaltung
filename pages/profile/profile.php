@@ -1,10 +1,19 @@
 <?php
-    require "../../guard.php";
-    require "../../db/logIntoDB.php";
+    require_once "../../guard.php";
+    require_once "../../db/logIntoDB.php";
+    require_once "../../util/validation/validation.php";
+
     session_start();
 
     // Wenn die User-ID als Parameter übergeben wird soll das Profil dieses Users angezeigt werden.
-    $id = isset($_GET["userId"]) ? $_GET["userId"] : $_SESSION["user"]["ID"];
+    //$id = isset($_GET["userId"]) ? $_GET["userId"] : $_SESSION["user"]["ID"];
+
+    $validator = new Validator(new NumberValidateable("USER_ID", $_GET, 0, PHP_INT_MAX));
+    $validator->validate();
+    if ($validator->hasFailed()) {
+        header("Location: ../user/users.php?" . $validator->generateUrlErrorParams());
+        exit;
+    }
 
     // Laden des Users aus der Datenbank
     // Auch wenn man sein eigenes Profil bearbeiten möchte macht es Sinn,
@@ -13,7 +22,7 @@
     // den User refreshed werden kann.
     $query = "SELECT * FROM user WHERE ID LIKE ?;";
     $statement = $db->prepare($query);
-    $statement->bind_param("i", $id);
+    $statement->bind_param("i", $_GET["USER_ID"]);
     $statement->execute();
     $user = $statement->get_result()->fetch_assoc();
 
@@ -48,7 +57,7 @@
             include "../../menubar.php";
         ?>
 
-        <div id="registrationContainer" class="container-fluid overlay quarter-width">
+        <div id="profileContainer" class="container-fluid overlay quarter-width">
             <h1>Profil</h1>
             <form class="text-center" method="POST" action="saveUser.php">
                 <div class="form-group">
@@ -57,9 +66,9 @@
                 <div class="form-group mt-3">
                     <select id="honorific" name="HONORIFIC" class="input-text form-control" required>
                         <option value disabled><?=$lang["HONORIFIC"]?></option>
-                        <option <?=$user["HONORIFIC"] === 0 ? "selected" : "" ?> value="male">Herr</option>
-                        <option <?=$user["HONORIFIC"] === 1 ? "selected" : "" ?> value="female">Frau</option>
-                        <option <?=$user["HONORIFIC"] === 2 ? "selected" : "" ?> value="other">Divers</option>
+                        <option <?=$user["HONORIFIC"] === 0 ? "selected" : "" ?> value="0">Herr</option>
+                        <option <?=$user["HONORIFIC"] === 1 ? "selected" : "" ?> value="1">Frau</option>
+                        <option <?=$user["HONORIFIC"] === 2 ? "selected" : "" ?> value="2">Divers</option>
                     </select>
                 </div>
                 <div class="form-group mt-3">
@@ -71,11 +80,7 @@
                 <div class="form-group mt-3">
                     <input type="email" id="email" name="EMAIL" class="input-text form-control" required maxlength="50" placeholder=<?=$lang["EMAIL"]?> value="<?=$user["EMAIL"]?>" />
                 </div>
-                <?php
-                    if (!$editingOwnProfile) {
-                        echo "<input type=\"hidden\" id=\"userId\" name=\"userId\" value=\"$id\" />";
-                    }
-                ?>
+                <input type="hidden" id="userId" name="USER_ID" value="<?=$_GET["USER_ID"]?>" />
                 <button type="submit" class="btn btn-primary mt-4">Speichern</button>
             </form>
         </div>
