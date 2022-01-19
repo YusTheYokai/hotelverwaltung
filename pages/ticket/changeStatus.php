@@ -4,7 +4,7 @@
     include "../../guard.php";
     include "../../db/logIntoDB.php";
 
-    guardTechnician();
+    guardLoggedIn();
 
     if (isset($_GET["id"]) && isset($_GET["status"])) {
         $changeStatusQuery = "UPDATE ticket SET STATUS = ? WHERE ID = ?;";
