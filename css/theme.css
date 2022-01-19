@@ -216,6 +216,11 @@ a:hover {
     border: none;
 }
 
+.table-icon-button.disabled {
+    pointer-events: none;
+    filter: invert(100%) sepia(3%) saturate(91%) hue-rotate(11deg) brightness(56%) contrast(100%);
+}
+
 .table-icon-button:hover {
     filter: invert(100%) sepia(3%) saturate(91%) hue-rotate(11deg) brightness(116%) contrast(100%);
     text-decoration: none;
