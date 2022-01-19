@@ -31,6 +31,7 @@
             <div class="form-group mt-3">
                 <input id="inputPicture" name="PICTURE" class="input-text form-control" type="file" accept=".jpeg">
             </div>
+            <input type="hidden" name="ORIGIN" value="createTicketController.php" />
             <button type="submit" class="btn btn-primary mt-4">Erstellen</button>
         </form>
     </div>
