@@ -1,11 +1,9 @@
 <?php
-    $order = "ASC";
-    if (isset($_GET["order"])) {
-        if ($_GET["order"] === "ASC") {
-            $order = "DESC";
-        }
+    $newOrder = "ASC";
+    if (!empty($sortBy) && !empty($order) && $sortBy === $col && $order === "ASC") {
+        $newOrder = "DESC";
     }
 ?>
 <th scope="col">
-    <a href="?sortBy=<?=$col?>&order=<?=$order?>"><?=$lang[$col]?></a>
+    <a href="?sortBy=<?=$col?>&order=<?=$newOrder?>"><?=$lang[$col]?></a>
 </th>
