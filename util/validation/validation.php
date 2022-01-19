@@ -27,6 +27,14 @@
         }
 
         /**
+         * Fügt ein ValidationResult hinzu.
+         * @param ValidationResult $validationResult
+         */
+        public function addValidationResult($validationResult) {
+            array_push($this->validationResults, $validationResult);
+        }
+
+        /**
          * Prüft, ob eine Validierung fehlgeschlagen hat.
          */
         public function hasFailed() {
@@ -157,6 +165,9 @@
         }
     }
 
+    /**
+     * Validateable für das Prüfen, ob zwei Werte gleich sind.
+     */
     class MatchValidateable extends Validateable {
 
         private $associativeNameConfirm;
@@ -177,7 +188,8 @@
 
             return $this->validationResult;
         }
-    } 
+    }
+
     /**
      * Validateable für Textfelder.
      */

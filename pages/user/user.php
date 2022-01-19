@@ -15,7 +15,7 @@
     }
 
     $newActiveState = $active ? 0 : 1;
-    $setActiveUrl = "/pages/user/setActive.php?userId=$id&active=$newActiveState";
+    $setActiveUrl = "/pages/user/setActive.php?USER_ID=$id&ACTIVE=$newActiveState";
     if (!empty($sortBy) && !empty($order)) {
         $setActiveUrl .= "&sortBy=$sortBy&order=$order";
     }
@@ -29,7 +29,7 @@
     <td><?=formatRole($role)?></td>
     <td><?=$lang[$active ? "'yes'" : "'no'"]?></td>
     <td>
-        <a href="<?=$setActiveUrl?>" class="table-icon-button" title="<?=$title?>">
+        <a href="<?=$setActiveUrl?>" class="table-icon-button  <?=$id === $_SESSION["user"]["ID"] ? 'disabled' : ''?>" title="<?=$title?>">
             <img src="<?=$icon?>" alt="<?=$alt?>" />
         </a>
         <a href="../profile/profile.php?USER_ID=<?=$id?>" class="table-icon-button" title="Profil bearbeiten">
