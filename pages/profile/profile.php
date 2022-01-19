@@ -62,6 +62,11 @@
             <form class="text-center" method="POST" action="saveUser.php">
                 <div class="form-group">
                     <input type="text" id="username" name="USERNAME" class="input-text form-control" required maxlength="20" placeholder="<?=$lang["USERNAME"]?>" value="<?=$user["USERNAME"]?>" <?= $usernameDisabled ? "disabled" : "" ?> />
+                    <?php
+                        if ($usernameDisabled) {
+                            echo "<input type='hidden' id='usernameHidden' name='USERNAME' value='" . $user['USERNAME'] . "' />";
+                        }
+                    ?>
                 </div>
                 <div class="form-group mt-3">
                     <select id="honorific" name="HONORIFIC" class="input-text form-control" required>
