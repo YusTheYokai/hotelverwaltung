@@ -229,7 +229,10 @@
     class EmailValidateable extends TextValidateable {
 
         public function validate() {
-            parent::validate();
+            if (parent::validate()->isFailed()) {
+                return $this->validationResult;
+            }
+
             if (!filter_var($this->associativeArray[$this->associativeName], FILTER_VALIDATE_EMAIL)) {
                 $this->validationResult->addErrorMessage("INVALID_EMAIL");
             }
