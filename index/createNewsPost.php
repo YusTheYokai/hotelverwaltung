@@ -1,8 +1,8 @@
 <?php
     session_start();
-    require "../db/logIntoDB.php";
+    require_once "../db/logIntoDB.php";
     $moveToRoot = "../";
-    require "../uploadPicture.php";
+    require_once "../uploadPicture.php";
 
     $addQuery = "INSERT INTO news_post (TITLE, CONTENT, PICTURE, USER_ID) VALUES (?, ?, ?, ?);";
     $addStatement = $db->prepare($addQuery);

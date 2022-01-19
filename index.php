@@ -39,15 +39,15 @@
     </head>
     <body>
         <?php
-            include "menubar.php";
+            require_once "menubar.php";
             if (isAdmin()) {
-                include "index/newsPostDialog.php";
+                require_once "index/newsPostDialog.php";
             }
         ?>
         <div id="actions" class="position-sticky">
             <?php
                 if (isAdmin()) {
-                    include "index/createNewsPostButton.php";
+                    require_once "index/createNewsPostButton.php";
                 }
             ?>
             <div>
@@ -57,7 +57,7 @@
                 </button>
                 <?php
                     if (isset($_GET["filter"])) {
-                        include "index/resetFilterButton.php";
+                        require_once "index/resetFilterButton.php";
                     }
                 ?>
             </div>
@@ -65,16 +65,14 @@
         <div class="footer-margin-bottom" style="margin-top: 20px;">
             <?php
                 while ($selectAllStatement->fetch()) {
-                    include "index/newsPost.php";
+                    require "index/newsPost.php";
                 }
             ?>
         </div>
         <?php
-            include "footer.php";
-            include "util/toast/toastManager.php";
+            require_once "/xampp/htdocs/util/bottomIncludes.php";
         ?>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <?php include "util/toast/toastManagerScript.php";?>
+        
 
         <script>
             let filterButton = document.getElementById("filterButton");

@@ -7,7 +7,7 @@
                     <?php
                         foreach ($columnsArray as $col) {
                             if (!str_contains($col, "ID") && !str_contains($ignoreColumns, $col)) {
-                                include "th.php";
+                                require "th.php";
                             }
                         }
                     ?>
@@ -17,7 +17,7 @@
             <tbody>
                 <?php
                     while ($statement->fetch()) {
-                        include $entity;
+                        require $entity;
                     }
                 ?>
             </tbody>

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require "../../db/logIntoDB.php";
+    require_once "../../db/logIntoDB.php";
     require_once "../../util/validation/validation.php";
 
     $userIdValidator = new Validator(new NumberValidateable("USER_ID", $_POST, 0, PHP_INT_MAX));
