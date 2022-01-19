@@ -27,11 +27,11 @@
         $picture = "../../uploads/$username/$pictureFileName";
     }
 
-    $commentsQuery = "SELECT CONTENT, CREATION_TIME, FIRST_NAME, LAST_NAME FROM comment JOIN user ON (comment.USER_ID = user.ID) WHERE TICKET_ID = ? ORDER BY comment.CREATION_TIME DESC;";
+    $commentsQuery = "SELECT comment.ID, CONTENT, CREATION_TIME, FIRST_NAME, LAST_NAME, user.ID FROM comment JOIN user ON (comment.USER_ID = user.ID) WHERE TICKET_ID = ? ORDER BY comment.CREATION_TIME DESC;";
     $commentsStatement = $db->prepare($commentsQuery);
     $commentsStatement->bind_param("i", $_GET["TICKET_ID"]);
     $commentsStatement->execute();
-    $commentsStatement->bind_result($content, $creationTime, $firstName, $lastName);
+    $commentsStatement->bind_result($id, $content, $creationTime, $firstName, $lastName, $userId);
 ?>
 
 <!DOCTYPE html>
@@ -84,7 +84,7 @@
     <div id="commentsContainer" class="container-fluid footer-margin-bottom">
         <?php
             while ($commentsStatement->fetch()) {
-                include "comment.php";
+                include "comment/comment.php";
             }
         ?>
     </div>

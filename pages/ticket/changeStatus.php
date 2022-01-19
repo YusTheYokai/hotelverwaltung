@@ -5,7 +5,7 @@
     require_once "../../db/logIntoDB.php";
     require_once "../../util/validation/validation.php";
 
-    guardTechnician();
+    guardLoggedIn();
 
     $validator = new Validator(
         new NumberValidateable("TICKET_ID", $_GET, 0, PHP_INT_MAX),

@@ -1,26 +1,34 @@
 <?php
     session_start();
-    require_once "../../db/logintoDB.php";
     require_once "../../displayUtils.php";
     require_once "../../translator.php";
+    require_once "../../guard.php";
 
+    // Nur einloggte User dürfen zu den Tickets.
+    guardLoggedIn();
+
+    require_once "../../db/logIntoDB.php";
+
+    // SQL-Statement erstellen
     $columns = "ticket.ID,TITLE,PICTURE,CONTENT,LAST_NAME,FIRST_NAME,CREATION_TIME,STATUS,USERNAME";
     $ignoreColumns = "USERNAME";
     $query = "SELECT $columns FROM ticket JOIN user ON (ticket.USER_ID = user.ID)";
 
-    if ($_SESSION['user']['ROLE'] === 0) {
+    // Wenn der User nicht Servicetechniker*in oder Admin ist darf er nur seine Tickets einsehen.
+    if (!isTechnician()) {
         $query = $query . " WHERE USER_ID = ?";
-        $statement = $db->prepare($query);
-        $statement->bind_param("i", $_SESSION['user']['ID']);
-    } else {
-        $statement = $db->prepare($query);
     }
 
-    require "../../table/tableLogic.php";
+    require_once "../../table/tableLogic.php";
+    $statement = $db->prepare($query);
+
+    // User-ID setzen, falls der User eben nicht Servicetechniker*in oder Admin ist.
+    if (!isTechnician()) {
+        $statement->bind_param("i", $_SESSION['user']['ID']);
+    }
 
     $statement->execute();
     $statement->bind_result($ID, $TITLE, $PICTURE, $CONTENT, $LAST_NAME, $FIRST_NAME,  $CREATION_TIME, $STATUS, $USERNAME);
-
 ?>
 
 
@@ -42,6 +50,7 @@
             $tableTitle = "Tickets";
             $entity = "ticket.php";
             include "../../table/table.php";
+
             require_once "../../util/bottomIncludes.php";
         ?>
     </body>

@@ -20,9 +20,6 @@
     position: absolute;
     width: calc(100% - 25px);
     bottom: 0;
-
-    font-size: 14px;
-    font-style: italic;
 }
 
 .news-post-footer > p {
