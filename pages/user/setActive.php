@@ -27,17 +27,15 @@
 
     require_once "../../db/logIntoDB.php";
 
-    $location = "Location: /pages/user/users.php";
-    if (isset($_GET["USER_ID"]) && isset($_GET["ACTIVE"])) {
-        $toggleActiveQuery = "UPDATE user SET ACTIVE = ? WHERE ID = ?;";
-        $toggleActiveStatement = $db->prepare($toggleActiveQuery);
-        $toggleActiveStatement->bind_param("ii", $_GET["ACTIVE"], $_GET["USER_ID"]);
-        $toggleActiveStatement->execute();
-
-        if (isset($_GET["sortBy"]) && isset($_GET["order"])) {
-            $location .= "?sortBy=" . $_GET["sortBy"] . "&order=" . $_GET["order"];
-        }
-    }
+    $toggleActiveQuery = "UPDATE user SET ACTIVE = ? WHERE ID = ?;";
+    $toggleActiveStatement = $db->prepare($toggleActiveQuery);
+    $toggleActiveStatement->bind_param("ii", $_GET["ACTIVE"], $_GET["USER_ID"]);
+    $toggleActiveStatement->execute();
     
+    $location = "Location: /pages/user/users.php?type0=INFO&msg0=CHANGED";
+    if (isset($_GET["sortBy"]) && isset($_GET["order"])) {
+        $location .= "&sortBy=" . $_GET["sortBy"] . "&order=" . $_GET["order"];
+    }
+
     header($location);
 ?>

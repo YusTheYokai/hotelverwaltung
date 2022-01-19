@@ -19,5 +19,10 @@
     $stmt->bind_param("i", $_GET["TICKET_ID"]);
     $stmt->execute();
 
-    header("Location: tickets.php?type0=INFO&msg0=DELETED");
+    $location = "Location: tickets.php?type0=INFO&msg0=DELETED";
+    if (isset($_GET["sortBy"]) && isset($_GET["order"])) {
+        $location .= "&sortBy=" . $_GET["sortBy"] . "&order=" . $_GET["order"];
+    }
+
+    header($location);
 ?>
