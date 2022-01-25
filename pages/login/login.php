@@ -55,7 +55,7 @@
             if ($success) {
                 $success = mkdir($path . "/thumbnails");
                 if (!$success) {
-                    error_log("Ordern für " . $username . " konnte nicht erstellt werden.");
+                    error_log("Ordner für " . $username . " konnte nicht erstellt werden.");
                 }
             }
         }
