@@ -2,6 +2,8 @@
     require_once "../../guard.php";
     require_once "../../util/validation/validation.php";
 
+    session_start();
+
     guardLoggedIn();
 
     $validator = new Validator(
@@ -13,7 +15,7 @@
     $validator->validate();
     if ($validator->hasFailed()) {
         if (isset($_POST["TICKET_ID"])) {
-            header("Location: ticketDetails.php?id=" . $_POST["TICKET_ID"] . "&" . $validator->generateUrlErrorParams());
+            header("Location: ticketDetails.php?TICKET_ID=" . $_POST["TICKET_ID"] . "&" . $validator->generateUrlErrorParams());
         } else {
             header("Location: tickets.php?" . $validator->generateUrlErrorParams());
         }
@@ -26,5 +28,5 @@
     $statement->bind_param("sii", $_POST["CONTENT"], $_POST["TICKET_ID"], $_POST["USER_ID"]);
     $statement->execute();
 
-    header("Location: ticketDetails.php?id=" . $_POST["TICKET_ID"] . "&type0=INFO&msg0=CREATED");
+    header("Location: ticketDetails.php?TICKET_ID=" . $_POST["TICKET_ID"] . "&type0=INFO&msg0=CREATED");
 ?>

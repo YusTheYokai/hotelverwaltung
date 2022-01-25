@@ -9,7 +9,7 @@
     $validator->validate();
     if ($validator->hasFailed()) {
         if (isset($_GET["TICKET_ID"])) {
-            header("Location: ../ticketDetails.php?id=" . $_GET["TICKET_ID"] . "&" . $validator->generateUrlErrorParams());
+            header("Location: ../ticketDetails.php?TICKET_ID=" . $_GET["TICKET_ID"] . "&" . $validator->generateUrlErrorParams());
         } else {
             header("Location: ../tickets.php?" . $validator->generateUrlErrorParams());
         }
@@ -22,5 +22,5 @@
     $statement->bind_param("i", $_GET["COMMENT_ID"]);
     $statement->execute();
 
-    header("Location: ../ticketDetails.php?id=" . $_GET["TICKET_ID"] . "&type0=INFO&msg0=DELETED");
+    header("Location: ../ticketDetails.php?TICKET_ID=" . $_GET["TICKET_ID"] . "&type0=INFO&msg0=DELETED");
 ?>
