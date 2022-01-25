@@ -3,6 +3,8 @@
     require_once "../../util/validation/validation.php";
     session_start();
 
+    guardLoggedIn();
+
     $userIdValidator = new Validator(new NumberValidateable("USER_ID", $_POST, 0, PHP_INT_MAX));
 
     $userIdValidator->validate();
@@ -12,7 +14,7 @@
     }
 
     $validatables = [];
-    $editingOwnProfile = $_POST["USER_ID"] === $_SESSION["user"]["ID"];
+    $editingOwnProfile = $_POST["USER_ID"] == $_SESSION["user"]["ID"];
     if ($editingOwnProfile) {
         $validatables = [new TextValidateable("PASSWORD_CURRENT", $_POST, 8, 50)];
     }
