@@ -17,7 +17,7 @@
             require_once "../menubar.php";
         ?>
         <div id="helpContainer" class="container-fluid overlay quarter-width text-center footer-margin-bottom">
-            <h1>Hotelverwaltung</h1>
+            <h1>Verein der Loser</h1>
             <p>Anonyme User können über Home auf unseren News Feed zugreifen und auch das Impressum, sowie die Hilfeseite aufrufen. </a>
             <p>Bei jeglichen Fragen und Beschwerden rund um das Hotel senden Sie bitte eine E-Mail an
             <a href="mailto: hotelverwaltung-hu-lerchl@technikum-wien.at">hotelverwaltung-hu-lerchl@technikum-wien.at</a>
